@@ -6,6 +6,7 @@ from api.v1.views import app_views
 from models import storage
 from models.state import State
 from sqlalchemy import func
+import traceback
 
 
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
@@ -63,7 +64,6 @@ def post_state():
         if 'name' not in data:
             abort(400, description="Missing name")
 
-        # Check if a state with the same name already exists
         existing_state = storage.session.query(State).filter(
             func.lower(State.name) == func.lower(data['name'])
         ).first()
@@ -72,11 +72,26 @@ def post_state():
             abort(400, description=f"A state named '{data['name']}' already exists.")
 
         instance = State(**data)
-        instance.save()
+        
+        # Try to save the instance
+        try:
+            instance.save()
+        except Exception as e:
+            # Log the full traceback for debugging
+            print(traceback.format_exc())
+            return jsonify({
+                "error": f"Failed to save state: {str(e)}",
+                "details": traceback.format_exc()
+            }), 500
 
         return make_response(jsonify(instance.to_dict()), 201)
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        # Log the full traceback for debugging
+        print(traceback.format_exc())
+        return jsonify({
+            "error": str(e),
+            "details": traceback.format_exc()
+        }), 500
 
 
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
