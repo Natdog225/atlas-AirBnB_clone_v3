@@ -5,6 +5,7 @@ from flask import jsonify, abort, request, make_response
 from api.v1.views import app_views
 from models import storage
 from models.state import State
+from sqlalchemy import func
 
 
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
@@ -61,6 +62,13 @@ def post_state():
 
     if 'name' not in data:
         abort(400, description="Missing name")
+
+    existing_state = storage.session.query(State).filter(
+        func.lower(State.name) == func.lower(data['name'])
+    ).first()
+
+    if existing_state:
+        abort(400, description=f"A state named '{data['name']}' already exists.")
 
     instance = State(**data)
     instance.save()
