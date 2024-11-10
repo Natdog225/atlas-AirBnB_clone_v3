@@ -49,31 +49,44 @@ def delete_state(state_id):
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
 def post_state():
     """ Creates a State """
-    if request.content_type != 'application/json':
-        abort(make_response(jsonify({"error": "Content-Type must be application/json"}), 400))
-
     try:
-        data = request.get_json()
-    except Exception:
-        abort(make_response(jsonify({"error": "Invalid JSON"}), 400))
+        if request.content_type != 'application/json':
+            return make_response(jsonify({"error": "Content-Type must be application/json"}), 400)
 
-    if not data:
-        abort(make_response(jsonify({"error": "Empty JSON"}), 400))
+        try:
+            data = request.get_json()
+        except Exception:
+            return make_response(jsonify({"error": "Invalid JSON"}), 400)
 
-    if 'name' not in data:
-        abort(make_response(jsonify({"error": "Missing name"}), 400))
+        if not data:
+            return make_response(jsonify({"error": "Empty JSON"}), 400)
 
-    existing_state = storage.session.query(State).filter(
-        func.lower(State.name) == func.lower(data['name'])
-    ).first()
+        if 'name' not in data:
+            return make_response(jsonify({"error": "Missing name"}), 400)
 
-    if existing_state:
-        abort(make_response(jsonify({"error": f"A state named '{data['name']}' already exists."}), 400))
+        existing_state = storage.session.query(State).filter(
+            func.lower(State.name) == func.lower(data['name'])
+        ).first()
 
-    instance = State(**data)
-    instance.save()
+        if existing_state:
+            return make_response(jsonify({"error": f"A state named '{data['name']}' already exists."}), 400)
 
-    return make_response(jsonify(instance.to_dict()), 201)
+        instance = State(**data)
+        
+        try:
+            instance.save()
+        except Exception as e:
+            return make_response(jsonify({
+                "error": f"Failed to save state: {str(e)}",
+                "details": traceback.format_exc()
+            }), 500)
+
+        return make_response(jsonify(instance.to_dict()), 201)
+    except Exception as e:
+        return make_response(jsonify({
+            "error": str(e),
+            "details": traceback.format_exc()
+        }), 500)
 
 
 
