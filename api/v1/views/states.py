@@ -48,33 +48,35 @@ def delete_state(state_id):
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
 def post_state():
     """ Creates a State """
-    # Check if the Content-Type is application/json
-    if request.content_type != 'application/json':
-        abort(400, description="Content-Type must be application/json")
-
     try:
-        data = request.get_json()
-    except Exception:
-        abort(400, description="Not a JSON")
+        if request.content_type != 'application/json':
+            abort(400, description="Content-Type must be application/json")
 
-    if not data:
-        abort(400, description="Empty JSON")
+        try:
+            data = request.get_json()
+        except Exception:
+            abort(400, description="Invalid JSON")
 
-    if 'name' not in data:
-        abort(400, description="Missing name")
+        if not data:
+            abort(400, description="Empty JSON")
 
-    existing_state = storage.session.query(State).filter(
-        func.lower(State.name) == func.lower(data['name'])
-    ).first()
+        if 'name' not in data:
+            abort(400, description="Missing name")
 
-    if existing_state:
-        abort(400, description=f"A state named '{data['name']}' already exists.")
+        # Check if a state with the same name already exists
+        existing_state = storage.session.query(State).filter(
+            func.lower(State.name) == func.lower(data['name'])
+        ).first()
 
-    instance = State(**data)
-    instance.save()
+        if existing_state:
+            abort(400, description=f"A state named '{data['name']}' already exists.")
 
-    return make_response(jsonify(instance.to_dict()), 201)
+        instance = State(**data)
+        instance.save()
 
+        return make_response(jsonify(instance.to_dict()), 201)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
