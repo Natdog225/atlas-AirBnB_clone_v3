@@ -49,49 +49,32 @@ def delete_state(state_id):
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
 def post_state():
     """ Creates a State """
+    if request.content_type != 'application/json':
+        abort(400, description="Content-Type must be application/json")
+
     try:
-        if request.content_type != 'application/json':
-            abort(400, description="Content-Type must be application/json")
+        data = request.get_json()
+    except Exception:
+        abort(400, description="Invalid JSON")
 
-        try:
-            data = request.get_json()
-        except Exception:
-            abort(400, description="Invalid JSON")
+    if not data:
+        abort(400, description="Empty JSON")
 
-        if not data:
-            abort(400, description="Empty JSON")
+    if 'name' not in data:
+        abort(400, description="Missing name")
 
-        if 'name' not in data:
-            abort(400, description="Missing name")
+    existing_state = storage.session.query(State).filter(
+        func.lower(State.name) == func.lower(data['name'])
+    ).first()
 
-        existing_state = storage.session.query(State).filter(
-            func.lower(State.name) == func.lower(data['name'])
-        ).first()
+    if existing_state:
+        abort(400, description=f"A state named '{data['name']}' already exists.")
 
-        if existing_state:
-            abort(400, description=f"A state named '{data['name']}' already exists.")
+    instance = State(**data)
+    instance.save()
 
-        instance = State(**data)
-        
-        # Try to save the instance
-        try:
-            instance.save()
-        except Exception as e:
-            # Log the full traceback for debugging
-            print(traceback.format_exc())
-            return jsonify({
-                "error": f"Failed to save state: {str(e)}",
-                "details": traceback.format_exc()
-            }), 500
+    return make_response(jsonify(instance.to_dict()), 201)
 
-        return make_response(jsonify(instance.to_dict()), 201)
-    except Exception as e:
-        # Log the full traceback for debugging
-        print(traceback.format_exc())
-        return jsonify({
-            "error": str(e),
-            "details": traceback.format_exc()
-        }), 500
 
 
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
