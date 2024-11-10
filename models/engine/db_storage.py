@@ -88,7 +88,8 @@ class DBStorage:
         """
         if cls is None:
             return sum(len(self.__session.query(classes[clss]).all()) for clss in classes)
-        elif cls in classes:
-            return len(self.__session.query(classes[cls]).all())
+        # changed to search classes.values
+        elif cls in classes.values():
+            return len(self.__session.query(cls).all())
         else:
             return 0
