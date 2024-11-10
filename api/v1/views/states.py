@@ -73,6 +73,7 @@ def post_state():
     instance = State(**data)
     instance.save()
 
+    print(jsonify(instance.to_dict()))
     return make_response(jsonify(instance.to_dict()), 201)
 
 
