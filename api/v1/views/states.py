@@ -50,30 +50,29 @@ def delete_state(state_id):
 def post_state():
     """ Creates a State """
     if request.content_type != 'application/json':
-        abort(400, description="Content-Type must be application/json")
+        abort(make_response(jsonify({"error": "Content-Type must be application/json"}), 400))
 
     try:
         data = request.get_json()
     except Exception:
-        abort(400, description="Invalid JSON")
+        abort(make_response(jsonify({"error": "Invalid JSON"}), 400))
 
     if not data:
-        abort(400, description="Empty JSON")
+        abort(make_response(jsonify({"error": "Empty JSON"}), 400))
 
     if 'name' not in data:
-        abort(400, description="Missing name")
+        abort(make_response(jsonify({"error": "Missing name"}), 400))
 
     existing_state = storage.session.query(State).filter(
         func.lower(State.name) == func.lower(data['name'])
     ).first()
 
     if existing_state:
-        abort(400, description=f"A state named '{data['name']}' already exists.")
+        abort(make_response(jsonify({"error": f"A state named '{data['name']}' already exists."}), 400))
 
     instance = State(**data)
     instance.save()
 
-    print(jsonify(instance.to_dict()))
     return make_response(jsonify(instance.to_dict()), 201)
 
 
