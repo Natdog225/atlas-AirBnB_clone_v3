@@ -57,47 +57,36 @@ def post_state():
         if request.content_type != 'application/json':
             return make_response(jsonify({"error": "Content-Type must be application/json"}), 400)
 
-        try:
-            data = request.get_json(silent=True)
-            if data is None:
-                raise ValueError("Not a valid JSON")
-        except ValueError as e:
-            return make_response(jsonify({"error": str(e)}), 400)
+        data = request.get_json(silent=True)
+        if data is None:
+            raise ValueError("Not a valid JSON")
 
         if not data:
-            return make_response(jsonify({"error": "Empty JSON"}), 400)
+            raise ValueError("Empty JSON")
 
         required_fields = ['name']
         for field in required_fields:
             if field not in data:
-                return make_response(jsonify({"error": f"{field} is missing"}), 400)
+                raise ValueError(f"{field} is missing")
 
         if not isinstance(data['name'], str):
-            return make_response(jsonify({"error": "Name must be a string"}), 400)
-
-        if storage_t == 'db':
-            existing_state = storage.session.query(State).filter(
-                func.lower(State.name) == func.lower(data['name'])
-            ).first()
-
-            if existing_state:
-                return make_response(jsonify({"error": f"A state named '{data['name']}' already exists."}), 400)
-        else:  # File storage
-            all_states = storage.all(State).values()
-            for state in all_states:
-                if state.name.lower() == data['name'].lower():
-                    return make_response(jsonify({"error": f"A state named '{data['name']}' already exists."}), 400)
+            raise ValueError("Name must be a string")
 
         instance = State(**data)
         storage.new(instance)
-        storage.save()
+        try:
+            storage.save()
+        except Exception as e:
+            logger.error(f"Error saving state: {str(e)}")
+            return make_response(jsonify({"error": "Internal Server Error"}), 500)
 
-        logging.info(f"State created: {instance.id}, Name: {instance.name}")
-
+        logger.info(f"State created: {instance.id}, Name: {instance.name}")
         return make_response(jsonify(instance.to_dict()), 201)
 
+    except ValueError as ve:
+        return make_response(jsonify({"error": str(ve)}), 400)
     except Exception as e:
-        logging.error(f"An error occurred in post_state: {str(e)}")
+        logger.error(f"An error occurred in post_state: {str(e)}")
         return make_response(jsonify({"error": "Internal Server Error"}), 500)
 
 
