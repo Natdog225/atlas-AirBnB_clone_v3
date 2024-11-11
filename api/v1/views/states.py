@@ -52,6 +52,7 @@ def delete_state(state_id):
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
 def post_state():
     """ Creates a State """
+    print(request.get_json())
     try:
         if request.content_type != 'application/json':
             abort(make_response(jsonify({"error": "Content-Type must be application/json"}), 400))
