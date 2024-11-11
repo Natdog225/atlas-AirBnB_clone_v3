@@ -8,6 +8,7 @@ import models
 from models.state import State
 from sqlalchemy import func
 from os import getenv
+import logging
 
 storage_t = getenv("HBNB_TYPE_STORAGE")
 
@@ -52,21 +53,27 @@ def delete_state(state_id):
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
 def post_state():
     """ Creates a State """
-    print(request.get_json())
     try:
         if request.content_type != 'application/json':
-            abort(make_response(jsonify({"error": "Content-Type must be application/json"}), 400))
+            return make_response(jsonify({"error": "Content-Type must be application/json"}), 400)
 
         try:
-            data = request.get_json()
-        except Exception:
-            abort(make_response(jsonify({"error": "Invalid JSON"}), 400))
+            data = request.get_json(silent=True)
+            if data is None:
+                raise ValueError("Not a valid JSON")
+        except ValueError as e:
+            return make_response(jsonify({"error": str(e)}), 400)
 
         if not data:
-            abort(make_response(jsonify({"error": "Empty JSON"}), 400))
+            return make_response(jsonify({"error": "Empty JSON"}), 400)
 
-        if 'name' not in data:
-            abort(make_response(jsonify({"error": "Missing name"}), 400))
+        required_fields = ['name']
+        for field in required_fields:
+            if field not in data:
+                return make_response(jsonify({"error": f"{field} is missing"}), 400)
+
+        if not isinstance(data['name'], str):
+            return make_response(jsonify({"error": "Name must be a string"}), 400)
 
         if storage_t == 'db':
             existing_state = storage.session.query(State).filter(
@@ -74,24 +81,24 @@ def post_state():
             ).first()
 
             if existing_state:
-                abort(make_response(jsonify({"error": f"A state named '{data['name']}' already exists."}), 400))
+                return make_response(jsonify({"error": f"A state named '{data['name']}' already exists."}), 400)
         else:  # File storage
             all_states = storage.all(State).values()
             for state in all_states:
                 if state.name.lower() == data['name'].lower():
-                    abort(make_response(jsonify({"error": f"A state named '{data['name']}' already exists."}), 400))
+                    return make_response(jsonify({"error": f"A state named '{data['name']}' already exists."}), 400)
 
         instance = State(**data)
-        instance.save()
+        storage.new(instance)
+        storage.save()
 
-        print(jsonify(instance.to_dict()))  # Print the JSON response before returning
+        logging.info(f"State created: {instance.id}, Name: {instance.name}")
 
         return make_response(jsonify(instance.to_dict()), 201)
 
     except Exception as e:
-        print(f"An error occurred in post_state: {e}")
-        abort(make_response(jsonify({"error": "Internal Server Error"}), 500))
-
+        logging.error(f"An error occurred in post_state: {str(e)}")
+        return make_response(jsonify({"error": "Internal Server Error"}), 500)
 
 
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
