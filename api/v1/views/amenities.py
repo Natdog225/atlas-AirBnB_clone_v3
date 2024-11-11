@@ -1,11 +1,18 @@
 #!/usr/bin/python3
 """ Amenity view """
 from flask import jsonify, abort, request, make_response
+from flask.json import JSONEncoder
 from api.v1.views import app_views
 from models import storage
 from models.amenity import Amenity
 
 
+class AmenityEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Amenity):
+            return obj.to_dict()
+        return super().default(obj)
+    
 @app_views.route('/amenities', methods=['GET'], strict_slashes=False)
 def get_amenities():
     """ Retrieves the list of all Amenity objects """
@@ -13,7 +20,7 @@ def get_amenities():
     list_amenities = []
     for amenity in all_amenities:
         list_amenities.append(amenity.to_dict())
-    return jsonify(list_amenities)
+    return jsonify(results=results)
 
 
 @app_views.route('/amenities/<amenity_id>', methods=['GET'],
