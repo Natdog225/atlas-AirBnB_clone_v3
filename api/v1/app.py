@@ -3,7 +3,6 @@
 import sys
 import os
 from flask import Flask, make_response, jsonify
-from flask.json import JSONEncoder
 from models import storage
 from api.v1.views import app_views
 
