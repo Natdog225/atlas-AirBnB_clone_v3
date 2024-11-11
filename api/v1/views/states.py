@@ -4,6 +4,7 @@
 from flask import jsonify, abort, request, make_response
 from api.v1.views import app_views
 from models import storage
+import models
 from models.state import State
 from sqlalchemy import func
 import traceback
@@ -63,7 +64,7 @@ def post_state():
     if 'name' not in data:
         abort(make_response(jsonify({"error": "Missing name"}), 400))
 
-    if storage_t == 'db':
+    if models.storage_t == 'db':
         existing_state = storage.session.query(State).filter(
             func.lower(State.name) == func.lower(data['name'])
         ).first()
