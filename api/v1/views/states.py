@@ -47,16 +47,6 @@ def delete_state(state_id):
 
 
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
-from flask import jsonify, abort, request, make_response
-from api.v1.views import app_views
-from models import storage
-from models.state import State
-from sqlalchemy import func
-from os import getenv
-
-storage_t = getenv("HBNB_TYPE_STORAGE")
-
-@app_views.route('/states', methods=['POST'], strict_slashes=False)
 def post_state():
     """ Creates a State """
     if request.content_type != 'application/json':
