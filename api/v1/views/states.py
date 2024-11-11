@@ -7,7 +7,9 @@ from models import storage
 import models
 from models.state import State
 from sqlalchemy import func
-import traceback
+from os import getenv
+
+storage_t = getenv("HBNB_TYPE_STORAGE")
 
 
 @app_views.route('/states', methods=['GET'], strict_slashes=False)
@@ -64,7 +66,7 @@ def post_state():
     if 'name' not in data:
         abort(make_response(jsonify({"error": "Missing name"}), 400))
 
-    if models.storage_t == 'db':
+    if storage_t == 'db':
         existing_state = storage.session.query(State).filter(
             func.lower(State.name) == func.lower(data['name'])
         ).first()
