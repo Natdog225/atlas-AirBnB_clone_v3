@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 #!/usr/bin/python3
 """ States view """
+from venv import logger
 from flask import jsonify, abort, request, make_response
 from api.v1.views import app_views
 from models import storage
@@ -51,42 +52,54 @@ def delete_state(state_id):
 
 
 @app_views.route('/states', methods=['POST'], strict_slashes=False)
+@app_views.route('/states', methods=['POST'], strict_slashes=False)
 def post_state():
     """ Creates a State """
+    logger.info("Starting post_state")
+    
     try:
         if request.content_type != 'application/json':
+            logger.error(f"Invalid content type: {request.content_type}")
             return make_response(jsonify({"error": "Content-Type must be application/json"}), 400)
 
-        data = request.get_json(silent=True)
-        if data is None:
-            raise ValueError("Not a valid JSON")
+        try:
+            data = request.get_json(silent=True)
+            if data is None:
+                raise ValueError("Not a valid JSON")
+            logger.info(f"Received data: {data}")
+        except ValueError as e:
+            logger.error(f"JSON parsing error: {str(e)}")
+            return make_response(jsonify({"error": str(e)}), 400)
 
         if not data:
-            raise ValueError("Empty JSON")
+            logger.error("Empty JSON received")
+            return make_response(jsonify({"error": "Empty JSON"}), 400)
 
         required_fields = ['name']
         for field in required_fields:
             if field not in data:
-                raise ValueError(f"{field} is missing")
+                logger.error(f"Missing field: {field}")
+                return make_response(jsonify({"error": f"{field} is missing"}), 400)
 
         if not isinstance(data['name'], str):
-            raise ValueError("Name must be a string")
+            logger.error("Name is not a string")
+            return make_response(jsonify({"error": "Name must be a string"}), 400)
+
+        logger.info("State creation attempt")
 
         instance = State(**data)
         storage.new(instance)
+        
         try:
             storage.save()
-        except Exception as e:
-            logger.error(f"Error saving state: {str(e)}")
+            logger.info(f"State saved successfully: {instance.id}, Name: {instance.name}")
+            return make_response(jsonify(instance.to_dict()), 201)
+        except Exception as save_error:
+            logger.error(f"Error saving state: {str(save_error)}")
             return make_response(jsonify({"error": "Internal Server Error"}), 500)
 
-        logger.info(f"State created: {instance.id}, Name: {instance.name}")
-        return make_response(jsonify(instance.to_dict()), 201)
-
-    except ValueError as ve:
-        return make_response(jsonify({"error": str(ve)}), 400)
     except Exception as e:
-        logger.error(f"An error occurred in post_state: {str(e)}")
+        logger.error(f"An unexpected error occurred in post_state: {str(e)}")
         return make_response(jsonify({"error": "Internal Server Error"}), 500)
 
 
