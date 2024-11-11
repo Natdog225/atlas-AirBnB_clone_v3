@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ Amenity view """
 from flask import jsonify, abort, request, make_response
-from flask.json import JSONEncoder
 from api.v1.views import app_views
 from models import storage
 from models.amenity import Amenity
