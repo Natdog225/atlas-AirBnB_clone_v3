@@ -88,4 +88,4 @@ class FileStorage:
             return len(self.__objects)
         else:
             return sum(1 for obj in
-                       self.__objects.values() if type is (obj) == cls)
+                       self.__objects.values() if type(obj) == cls)  # noqa: E721
