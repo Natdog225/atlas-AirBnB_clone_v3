@@ -31,6 +31,7 @@ class TestDBStorageDocs(unittest.TestCase):
         """Set up for the test class"""
         cls.storage = DBStorage()
         cls.storage.reload()
+        Base.metadata.create_all(cls.storage.__engine)
 
     def setUp(self):
         """Set up for each test"""
