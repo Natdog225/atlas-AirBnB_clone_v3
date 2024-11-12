@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+This module contains the DBStorage class, which handles database operations
+for the application.
+"""
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from models.base_model import Base
@@ -20,7 +24,7 @@ classes = {"Amenity": Amenity, "City": City,
 
 
 class DBStorage:
-    """interaacts with the MySQL database"""
+    """interacts with the MySQL database"""
     __engine = None
     __session = None
 

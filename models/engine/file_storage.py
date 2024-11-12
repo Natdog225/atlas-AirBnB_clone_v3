@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+This module contains the FileStorage class, which handles file-based storage
+operations for the application.
+"""
 import json
 from models.amenity import Amenity
 from models.base_model import BaseModel
