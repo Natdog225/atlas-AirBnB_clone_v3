@@ -6,7 +6,6 @@ Contains the TestDBStorageDocs and TestDBStorage classes
 from datetime import datetime
 import inspect
 from unittest.mock import Base
-from unittest.mock import Base
 import models
 from models.engine import db_storage
 from models.amenity import Amenity
