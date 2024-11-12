@@ -84,12 +84,11 @@ class DBStorage:
         self.__session.remove()
 
     def get(self, cls, id):
-        """
-        Retrieve one object based on class and ID.
-        """
-        if cls in classes.values():
-            obj = self.__session.query(cls).filter_by(id=id).first()
-            return obj
+        """Retrieve one object based on the
+        class and ID, or None if not found."""
+        if cls and id:
+            key = "{}.{}".format(cls.__name__, id)
+            return self.all(cls).get(key)
         return None
 
     def count(self, cls=None):
