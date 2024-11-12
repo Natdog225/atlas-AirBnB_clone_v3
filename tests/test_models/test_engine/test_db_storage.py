@@ -31,10 +31,10 @@ class TestDBStorageDocs(unittest.TestCase):
         """Set up for the test class"""
         os.environ['HBNB_MYSQL_USER'] = 'hbnb_test'
         os.environ['HBNB_MYSQL_PWD'] = 'hbnb_test_pwd'
-        os.environ['HBNB_MYSQL_HOST'] = 'localhost'
+        os.environ['HBNB_MYSQL_HOST'] = '127.0.0.1'
         os.environ['HBNB_MYSQL_DB'] = 'hbnb_test_db'
         os.environ['HBNB_ENV'] = 'test'
-
+        
         cls.storage = DBStorage()
         cls.storage.reload()
         Base.metadata.create_all(cls.storage.__engine)
