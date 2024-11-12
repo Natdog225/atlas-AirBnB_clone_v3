@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-Base = declarative_base()
 from models.base_model import Base
 from models.user import User
 from models.state import State
@@ -13,6 +12,8 @@ from os import getenv
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+
+Base = declarative_base()
 
 classes = {"Amenity": Amenity, "City": City,
            "Place": Place, "Review": Review, "State": State, "User": User}
@@ -67,7 +68,7 @@ class DBStorage:
         Base.metadata.create_all(self.__engine)
         sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
         Session = scoped_session(sess_factory)
-        self.__session = Session
+        self.__session = Session()
 
     def close(self):
         """call remove() method on the private session attribute"""
@@ -86,7 +87,8 @@ class DBStorage:
         Count objects in storage.
         """
         if cls is None:
-            return sum(len(self.__session.query(classes[clss]).all()) for clss in classes)
+            return sum(len(self.__session.query(classes[clss]).all()) 
+                       for clss in classes)
         elif cls in classes.values():
             return len(self.__session.query(cls).all())
         else:
