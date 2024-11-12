@@ -97,7 +97,7 @@ def put_state(state_id):
     ignore = ['id', 'created_at', 'updated_at']
 
     try:
-        data = request.get_json()
+        data = request.get_json(silent=True)
     except Exception:
         abort(make_response(jsonify({"error": "Invalid JSON"}), 400))
     for key, value in data.items():
