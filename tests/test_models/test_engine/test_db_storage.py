@@ -89,7 +89,7 @@ class TestFileStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_get(self):
-        """Test that get properly retrieves one object, based on class and ID"""
+        """Test that get properly retrieves one object, on class and ID"""
         storage = DBStorage()
         storage.reload()
         for key, value in classes.items():
@@ -101,7 +101,6 @@ class TestFileStorage(unittest.TestCase):
             self.assertEqual(obj.id, test_obj.id)
             self.assertEqual(obj.__class__, test_obj.__class__)
             self.assertEqual(obj.to_dict(), test_obj.to_dict())
-
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_count(self):

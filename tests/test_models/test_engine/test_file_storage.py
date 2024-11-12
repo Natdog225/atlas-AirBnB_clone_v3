@@ -116,7 +116,7 @@ class TestFileStorage(unittest.TestCase):
 
     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
     def test_get(self):
-        """Test that get properly retrieves one object, based on class and ID"""
+        """Test that get properly retrieves one object,based on class and ID"""
         storage = FileStorage()
         storage.reload()
         for key, value in classes.items():
