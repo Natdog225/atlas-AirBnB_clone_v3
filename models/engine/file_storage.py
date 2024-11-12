@@ -83,4 +83,5 @@ class FileStorage:
         if cls is None:
             return len(self.__objects)
         else:
-            return sum(1 for obj in self.__objects.values() if isinstance(obj, cls))
+            return sum(1 for obj in
+                       self.__objects.values() if isinstance(obj, cls))
