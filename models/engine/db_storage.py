@@ -88,7 +88,8 @@ class DBStorage:
         Retrieve one object based on class and ID.
         """
         if cls in classes.values():
-            return self.__session.query(cls).get(id)
+            obj = self.__session.query(cls).filter_by(id=id).first()
+            return obj
         return None
 
     def count(self, cls=None):
