@@ -133,7 +133,8 @@ class TestFileStorage(unittest.TestCase):
     def test_count(self):
         """Test that count properly counts the number of objects in storage"""
         storage = FileStorage()
-        storage.reload()
+        storage._FileStorage__objects = {}
+        storage.save()
         count = 0
         for value in classes.values():
             instance = value()
