@@ -87,7 +87,7 @@ class DBStorage:
         Count objects in storage.
         """
         if cls is None:
-            return sum(len(self.__session.query(classes[clss]).all()) 
+            return sum(len(self.__session.query(classes[clss]).all())
                        for clss in classes)
         elif cls in classes.values():
             return len(self.__session.query(cls).all())
