@@ -155,4 +155,3 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(storage.count(Place), 1)
         self.assertEqual(storage.count(Review), 1)
         self.assertEqual(storage.count(BaseModel), 1)
-
