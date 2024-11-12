@@ -8,7 +8,8 @@ from models.review import Review
 from models.user import User
 
 
-@app_views.route('/places/<place_id>/reviews', methods=['GET'], strict_slashes=False)
+@app_views.route('/places/<place_id>/reviews',
+                 methods=['GET'], strict_slashes=False)
 def get_all_reviews(place_id):
     """Retrieves the list of all Review objects of a Place."""
     place = storage.get(Place, place_id)
@@ -58,9 +59,11 @@ def create_review(place_id):
     if not user:
         abort(404)
 
-    new_review = Review(text=data['text'], place_id=place_id, user_id=data['user_id'])
+    new_review = Review(text=data['text'], place_id=place_id,
+                        user_id=data['user_id'])
     for key, value in data.items():
-        if key not in ['id', 'user_id', 'place_id', 'created_at', 'updated_at']:
+        if key not in ['id', 'user_id', 'place_id',
+                       'created_at', 'updated_at']:
             setattr(new_review, key, value)
 
     storage.new(new_review)
@@ -80,7 +83,8 @@ def update_review(review_id):
 
     data = request.get_json()
     for key, value in data.items():
-        if key not in ['id', 'user_id', 'place_id', 'created_at', 'updated_at']:
+        if key not in ['id', 'user_id', 'place_id',
+                       'created_at', 'updated_at']:
             setattr(review, key, value)
 
     storage.save()
