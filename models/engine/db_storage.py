@@ -77,10 +77,9 @@ class DBStorage:
         """
         Retrieve one object based on class and ID.
         """
-        # check the value of classes, otherwise was getting key and value
         if cls in classes.values():
-            obj = self.__session.query(cls).filter_by(id=id).first()
-            return obj
+            return self.__session.query(cls).get(id)
+        return None
 
     def count(self, cls=None):
         """
@@ -88,7 +87,6 @@ class DBStorage:
         """
         if cls is None:
             return sum(len(self.__session.query(classes[clss]).all()) for clss in classes)
-        # changed to search classes.values
         elif cls in classes.values():
             return len(self.__session.query(cls).all())
         else:

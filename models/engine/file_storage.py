@@ -69,7 +69,7 @@ class FileStorage:
         """
         Retrieve one object based on class name and ID.
         """
-        if cls in classes:
+        if cls in classes.values():
             for obj in self.__objects.values():
                 if type(obj) == cls and obj.id == id:
                     return obj
@@ -83,8 +83,4 @@ class FileStorage:
         if cls is None:
             return len(self.__objects)
         else:
-            count = 0
-            for obj in self.__objects.values():
-                if type(obj) == cls:
-                    count += 1
-            return count
+            return sum(1 for obj in self.__objects.values() if type(obj) == cls)
