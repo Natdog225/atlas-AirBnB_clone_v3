@@ -141,6 +141,13 @@ class TestFileStorage(unittest.TestCase):
             storage.new(instance)
             storage.save()
             count += 1
+
+        print(f"Expected total count: {count}")
+        print(f"Actual total count: {storage.count()}")
+
+        for cls in classes.values():
+            print(f"Count for {cls.__name__}: {storage.count(cls)}")
+
         self.assertEqual(count, storage.count())
         self.assertEqual(storage.count(State), 1)
         self.assertEqual(storage.count(City), 1)
@@ -148,3 +155,4 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(storage.count(Place), 1)
         self.assertEqual(storage.count(Review), 1)
         self.assertEqual(storage.count(BaseModel), 1)
+
