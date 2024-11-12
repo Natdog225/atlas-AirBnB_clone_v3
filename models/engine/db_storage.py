@@ -30,34 +30,18 @@ class DBStorage:
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        HBNB_MYSQL_USER = getenv('HBNB_MYSQL_USER', 'hbnb_dev')
-        HBNB_MYSQL_PWD = getenv('HBNB_MYSQL_PWD', 'hbnb_dev_pwd')
-        HBNB_MYSQL_HOST = getenv('HBNB_MYSQL_HOST', 'localhost')
-        HBNB_MYSQL_DB = getenv('HBNB_MYSQL_DB', 'hbnb_dev_db')
-        HBNB_ENV = getenv('HBNB_ENV', 'dev')
-        
-        print(f"Connecting to MySQL: {HBNB_MYSQL_USER}@{HBNB_MYSQL_HOST}/{HBNB_MYSQL_DB}")
-        
-        try:
-            self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
-                                        format(HBNB_MYSQL_USER,
-                                                HBNB_MYSQL_PWD,
-                                                HBNB_MYSQL_HOST,
-                                                HBNB_MYSQL_DB))
-
-            if HBNB_ENV == "test":
-                Base.metadata.drop_all(self.__engine)
-            Base.metadata.create_all(self.__engine)
-
-            sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
-            Session = scoped_session(sess_factory)
-            self.__session = Session()
-
-            print("Database connection established successfully")
-        except Exception as e:
-            print(f"Error establishing database connection: {str(e)}")
-            raise
-
+        HBNB_MYSQL_USER = getenv('HBNB_MYSQL_USER')
+        HBNB_MYSQL_PWD = getenv('HBNB_MYSQL_PWD')
+        HBNB_MYSQL_HOST = getenv('HBNB_MYSQL_HOST')
+        HBNB_MYSQL_DB = getenv('HBNB_MYSQL_DB')
+        HBNB_ENV = getenv('HBNB_ENV')
+        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
+                                      format(HBNB_MYSQL_USER,
+                                             HBNB_MYSQL_PWD,
+                                             HBNB_MYSQL_HOST,
+                                             HBNB_MYSQL_DB))
+        if HBNB_ENV == "test":
+            Base.metadata.drop_all(self.__engine)
 
     def all(self, cls=None):
         """query on the current database session"""
@@ -95,11 +79,11 @@ class DBStorage:
         self.__session.remove()
 
     def get(self, cls, id):
-        """Retrieve one object based on the
-        class and ID, or None if not found."""
-        if cls and id:
-            key = "{}.{}".format(cls.__name__, id)
-            return self.all(cls).get(key)
+        """
+        Retrieve one object based on class and ID.
+        """
+        if cls in classes.values():
+            return self.__session.query(cls).get(id)
         return None
 
     def count(self, cls=None):
