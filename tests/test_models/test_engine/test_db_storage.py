@@ -6,6 +6,7 @@ Contains the TestDBStorageDocs and TestDBStorage classes
 from datetime import datetime
 import inspect
 from unittest.mock import Base
+from unittest.mock import Base
 import models
 from models.engine import db_storage
 from models.amenity import Amenity
@@ -85,6 +86,11 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_all_returns_dict(self):
         """Test that all returns a dictionaty"""
+        try:
+            self.assertIs(type(models.storage.all()), dict)
+        except Exception as e:
+            print(f"Exception occurred: {e}")
+            self.fail(f"Exception occurred: {e}")
         try:
             self.assertIs(type(models.storage.all()), dict)
         except Exception as e:
