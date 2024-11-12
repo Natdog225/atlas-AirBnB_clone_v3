@@ -5,6 +5,7 @@ Contains the TestDBStorageDocs and TestDBStorage classes
 
 from datetime import datetime
 import inspect
+from unittest.mock import Base
 import models
 from models.engine import db_storage
 from models.amenity import Amenity
@@ -27,8 +28,19 @@ class TestDBStorageDocs(unittest.TestCase):
     """Tests to check the documentation and style of DBStorage class"""
     @classmethod
     def setUpClass(cls):
-        """Set up for the doc tests"""
-        cls.dbs_f = inspect.getmembers(DBStorage, inspect.isfunction)
+        """Set up for the test class"""
+        cls.storage = DBStorage()
+        cls.storage.reload()
+        Base.metadata.create_all(cls.storage.__engine)
+
+    def setUp(self):
+        """Set up for each test"""
+        self.storage = DBStorage()
+        self.storage.reload()
+
+    def tearDown(self):
+        """Tear down for each test"""
+        self.storage.__session.rollback()
 
     def test_pep8_conformance_db_storage(self):
         """Test that models/engine/db_storage.py conforms to PEP8."""
@@ -73,7 +85,11 @@ class TestFileStorage(unittest.TestCase):
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_all_returns_dict(self):
         """Test that all returns a dictionaty"""
-        self.assertIs(type(models.storage.all()), dict)
+        try:
+            self.assertIs(type(models.storage.all()), dict)
+        except Exception as e:
+            print(f"Exception occurred: {e}")
+            self.fail(f"Exception occurred: {e}")
 
     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_all_no_class(self):
