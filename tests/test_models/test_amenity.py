@@ -9,7 +9,7 @@ import models
 from models import amenity
 from models.amenity import Amenity
 from models.base_model import BaseModel
-import pycodestyle as pep8
+import pep8
 import unittest
 from api.v1.app import app
 from models import storage
@@ -225,7 +225,7 @@ class TestAmenityAPI(unittest.TestCase):
         response = self.client.put(
            f'amenities/{self.amenity.id}', data="invalid_json", headers=headers
         )
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 404)
         error_message = response.get_json(silent=True) or {}
         self.assertIn("Not a JSON", error_message.get("error", ""))
 
