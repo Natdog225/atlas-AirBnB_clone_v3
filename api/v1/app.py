@@ -13,6 +13,13 @@ from models import storage
 # Initialize Flask
 app = Flask(__name__)
 app.url_map.strict_slashes = False
+
+
+@app_views.errorhandler(400)
+def bad_request(error):
+    return jsonify({"error": str(error)}), 400
+
+
 app.register_blueprint(app_views, url_prefix='/api/v1')
 
 
