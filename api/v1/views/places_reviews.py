@@ -2,7 +2,6 @@
 
 """
 This module provides RESTful API actions for Review objects.
-It includes routes to retrieve, create, delete, and update reviews for places.
 """
 
 from flask import jsonify, abort, request

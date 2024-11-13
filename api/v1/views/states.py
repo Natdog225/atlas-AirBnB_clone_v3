@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 """
 Module for handling State related routes in the API.
-This module includes routes for retrieving, creating,
-updating, and deleting State objects.
 """
 
 from flask import jsonify, request, abort
@@ -64,7 +62,6 @@ def update_state(state_id):
     if not data:
         abort(400, description="Not a JSON")
 
-    # Ignore keys not allowed to be updated
     ignore_keys = ['id', 'created_at', 'updated_at']
     for key, value in data.items():
         if key not in ignore_keys:

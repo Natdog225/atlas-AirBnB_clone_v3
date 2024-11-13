@@ -11,9 +11,6 @@ the following functionalities:
 3. **DELETE /api/v1/cities/<city_id>**: Deletes a city by its ID.
 4. **POST /api/v1/states/<state_id>/cities**: Creates a new city.
 5. **PUT /api/v1/cities/<city_id>**: Updates an existing city.
-
-Each route interacts with the database using
-the `storage` object to fetch, create, or modify city data.
 """
 
 

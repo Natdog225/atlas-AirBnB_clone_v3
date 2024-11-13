@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """
 This module provides RESTful API actions for User objects.
-It includes routes to retrieve, create, delete, and update users.
 """
 
 from flask import jsonify, abort, request
