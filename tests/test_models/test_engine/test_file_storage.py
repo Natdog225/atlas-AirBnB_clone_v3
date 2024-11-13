@@ -16,8 +16,7 @@ from models.state import State
 from models.user import User
 import json
 import os
-import pycodestyle as pep8
-import unittest
+import pep8
 
 
 FileStorage = file_storage.FileStorage

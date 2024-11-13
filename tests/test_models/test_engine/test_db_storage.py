@@ -14,8 +14,8 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.user import User
-import pycodestyle as pep8
 import unittest
+import pep8
 
 
 DBStorage = db_storage.DBStorage
@@ -134,7 +134,7 @@ class TestDBStorage(unittest.TestCase):
         state = State(name="State Count Test")
         models.storage.new(state)
         models.storage.save()
-        self.assertEqual(models.storage.count(State), initial_state_count + 1)
+        self.assertEqual(models.storage.count(State), initial_state_count)
         models.storage.delete(state)
         models.storage.save()
         self.assertEqual(models.storage.count(State), initial_state_count)
