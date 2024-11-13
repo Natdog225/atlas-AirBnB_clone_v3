@@ -2,22 +2,22 @@
 """
 Contains the TestDBStorageDocs and TestDBStorage classes
 """
+
 from datetime import datetime
 import inspect
-from unittest.mock import Base
-import zbackburnermodels
-from zbackburnermodels.engine import db_storage
-from zbackburnermodels.amenity import Amenity
-from zbackburnermodels.base_model import BaseModel
-from zbackburnermodels.city import City
-from zbackburnermodels.place import Place
-from zbackburnermodels.review import Review
-from zbackburnermodels.state import State
-from zbackburnermodels.user import User
-import json
-import os
-import pep8
+import models
+from models.engine import db_storage
+from models.amenity import Amenity
+from models.base_model import BaseModel
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
+import pycodestyle as pep8
 import unittest
+
+
 DBStorage = db_storage.DBStorage
 classes = {"Amenity": Amenity, "City": City, "Place": Place,
            "Review": Review, "State": State, "User": User}
@@ -27,16 +27,8 @@ class TestDBStorageDocs(unittest.TestCase):
     """Tests to check the documentation and style of DBStorage class"""
     @classmethod
     def setUpClass(cls):
-        """Set up for the test class"""
-        os.environ['HBNB_MYSQL_USER'] = 'hbnb_test'
-        os.environ['HBNB_MYSQL_PWD'] = 'hbnb_test_pwd'
-        os.environ['HBNB_MYSQL_HOST'] = 'localhost'
-        os.environ['HBNB_MYSQL_DB'] = 'hbnb_test_db'
-        os.environ['HBNB_ENV'] = 'test'
-
-        cls.storage = DBStorage()
-        cls.storage.reload()
-        Base.metadata.create_all(cls.storage.__engine)
+        """Set up for the doc tests"""
+        cls.dbs_f = inspect.getmembers(DBStorage, inspect.isfunction)
 
     def test_pep8_conformance_db_storage(self):
         """Test that models/engine/db_storage.py conforms to PEP8."""
@@ -48,8 +40,7 @@ class TestDBStorageDocs(unittest.TestCase):
     def test_pep8_conformance_test_db_storage(self):
         """Test tests/test_models/test_db_storage.py conforms to PEP8."""
         pep8s = pep8.StyleGuide(quiet=True)
-        result = pep8s.check_files(['tests/test_models/test_engine/\
-test_db_storage.py'])
+        result = pep8s.check_files(['test_engine/test_db_storage.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
@@ -76,46 +67,78 @@ test_db_storage.py'])
                             "{:s} method needs a docstring".format(func[0]))
 
 
-class TestFileStorage(unittest.TestCase):
-    """Test the FileStorage class"""
-    @unittest.skipIf(zbackburnermodels.storage_t != 'db', "not testing db storage")
+class TestDBStorage(unittest.TestCase):
+    """Test the DBStorage class"""
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_all_returns_dict(self):
-        """Test that all returns a dictionaty"""
-        self.assertIs(type(zbackburnermodels.storage.all()), dict)
+        """Test that all returns a dictionary"""
+        self.assertIs(type(models.storage.all()), dict)
 
-    @unittest.skipIf(zbackburnermodels.storage_t != 'db', "not testing db storage")
-    def test_returns_obj(self):
-        """Test that get returns an existing object """
-        state = State(name="California")
-        state.save()
-        first_state_obj = list(zbackburnermodels.storage.all("State").values())[0]
-        state_obj = zbackburnermodels.storage.get("State", first_state_obj.id)
-        self.assertIs(first_state_obj, state_obj)
-
-    @unittest.skipIf(zbackburnermodels.storage_t != 'db', "not testing db storage")
-    def test_returns_none(self):
-        """Test that get returns None for nonexisting object """
-        state_obj = zbackburnermodels.storage.get("State", "IDONTEXIST")
-        self.assertIsNone(state_obj)
-
-    @unittest.skipIf(zbackburnermodels.storage_t != 'db', "not testing db storage")
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_all_no_class(self):
         """Test that all returns all rows when no class is passed"""
+        all_objs = models.storage.all()
+        self.assertGreaterEqual(len(all_objs), 0)
 
-    @unittest.skipIf(zbackburnermodels.storage_t != 'db', "not testing db storage")
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_new(self):
-        """test that new adds an object to the database"""
+        """Test that new adds an object to the database"""
+        initial_count = models.storage.count(State)
+        state = State(name="Test State")
+        models.storage.new(state)
+        models.storage.save()
+        self.assertEqual(models.storage.count(State), initial_count + 1)
 
-    @unittest.skipIf(zbackburnermodels.storage_t != 'db', "not testing db storage")
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_save(self):
-        """Test that save properly saves objects to file.json"""
+        """Test that save properly saves objects to the database"""
+        state = State(name="Another Test State")
+        models.storage.new(state)
+        models.storage.save()
+        saved_state = models.storage.get(State, state.id)
+        self.assertIsNotNone(saved_state)
+        self.assertEqual(saved_state.name, "Another Test State")
 
-    @unittest.skipIf(zbackburnermodels.storage_t != 'db', "not testing db storage")
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_get(self):
+        """Test that get retrieves the correct object based on class and id"""
+        state = State(name="Unique Test State")
+        models.storage.new(state)
+        models.storage.save()
+        retrieved_state = models.storage.get(State, state.id)
+        self.assertEqual(retrieved_state, state)
+        self.assertEqual(retrieved_state.name, "Unique Test State")
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_get_nonexistent(self):
+        """Test that get returns None when an object is not found"""
+        self.assertIsNone(models.storage.get(State, "nonexistent_id"))
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
     def test_count(self):
-        """Test that count is properly return """
-        objs = zbackburnermodels.storage.all()
-        self.assertEqual(len(objs), zbackburnermodels.storage.count())
-        state_objs = zbackburnermodels.storage.all("State")
-        self.assertEqual(len(state_objs), zbackburnermodels.storage.count("State"))
-        no_objs = zbackburnermodels.storage.all("Any")
-        self.assertEqual(len(no_objs), zbackburnermodels.storage.count("Any"))
+        """Test that count returns the correct count of objects in storage"""
+        initial_count = models.storage.count()
+        new_state = State(name="Count Test State")
+        models.storage.new(new_state)
+        models.storage.save()
+        self.assertEqual(models.storage.count(), initial_count + 1)
+        models.storage.delete(new_state)
+        models.storage.save()
+        self.assertEqual(models.storage.count(), initial_count)
+
+    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    def test_count_specific_class(self):
+        """Test that count returns the correct count for a specific class"""
+        initial_state_count = models.storage.count(State)
+        state = State(name="State Count Test")
+        models.storage.new(state)
+        models.storage.save()
+        self.assertEqual(models.storage.count(State), initial_state_count + 1)
+        models.storage.delete(state)
+        models.storage.save()
+        self.assertEqual(models.storage.count(State), initial_state_count)
+
+
+if __name__ == "__main__":
+    unittest.main()

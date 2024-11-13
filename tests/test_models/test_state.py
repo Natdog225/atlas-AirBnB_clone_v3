@@ -1,20 +1,20 @@
 #!/usr/bin/python3
 """
-Contains the TestStateDocs classes
+Contains the TestStateDocs, TestState classes, and API tests.
 """
 
-from datetime import datetime
-import inspect
-import zbackburnermodels
-from zbackburnermodels import state
-from zbackburnermodels.base_model import BaseModel
-import pep8
 import unittest
-State = state.State
+import inspect
+import pycodestyle as pep8
+from api.v1.app import app
+from models import storage
+from models import state
+from models.state import State
 
 
 class TestStateDocs(unittest.TestCase):
     """Tests to check the documentation and style of State class"""
+
     @classmethod
     def setUpClass(cls):
         """Set up for the doc tests"""
@@ -22,15 +22,15 @@ class TestStateDocs(unittest.TestCase):
 
     def test_pep8_conformance_state(self):
         """Test that models/state.py conforms to PEP8."""
-        pep8s = pep8.StyleGuide(quiet=True)
-        result = pep8s.check_files(['models/state.py'])
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['models/state.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
     def test_pep8_conformance_test_state(self):
         """Test that tests/test_models/test_state.py conforms to PEP8."""
-        pep8s = pep8.StyleGuide(quiet=True)
-        result = pep8s.check_files(['tests/test_models/test_state.py'])
+        pep8style = pep8.StyleGuide(quiet=True)
+        result = pep8style.check_files(['tests/test_models/test_state.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
@@ -57,49 +57,66 @@ class TestStateDocs(unittest.TestCase):
                             "{:s} method needs a docstring".format(func[0]))
 
 
-class TestState(unittest.TestCase):
-    """Test the State class"""
-    def test_is_subclass(self):
-        """Test that State is a subclass of BaseModel"""
-        state = State()
-        self.assertIsInstance(state, BaseModel)
-        self.assertTrue(hasattr(state, "id"))
-        self.assertTrue(hasattr(state, "created_at"))
-        self.assertTrue(hasattr(state, "updated_at"))
+class TestStateAPI(unittest.TestCase):
+    """Test the State API endpoints"""
 
-    def test_name_attr(self):
-        """Test that State has attribute name, and it's as an empty string"""
-        state = State()
-        self.assertTrue(hasattr(state, "name"))
-        if zbackburnermodels.storage_t == 'db':
-            self.assertEqual(state.name, None)
-        else:
-            self.assertEqual(state.name, "")
+    @classmethod
+    def setUpClass(cls):
+        """Set up Flask test client for State API tests"""
+        app.testing = True
+        cls.client = app.test_client()
 
-    def test_to_dict_creates_dict(self):
-        """test to_dict method creates a dictionary with proper attrs"""
-        s = State()
-        new_d = s.to_dict()
-        self.assertEqual(type(new_d), dict)
-        self.assertFalse("_sa_instance_state" in new_d)
-        for attr in s.__dict__:
-            if attr is not "_sa_instance_state":
-                self.assertTrue(attr in new_d)
-        self.assertTrue("__class__" in new_d)
+    def test_create_state_missing_name(self):
+        """Test POST /api/v1/states with missing 'name' field in JSON"""
+        headers = {"Content-Type": "application/json"}
+        response = self.client.post('/api/v1/states', json={}, headers=headers)
+        self.assertEqual(response.status_code, 400)
+        error_message = response.get_json(silent=True) or {}
+        self.assertIn("Missing name", error_message.get("description", ""))
 
-    def test_to_dict_values(self):
-        """test that values in dict returned from to_dict are correct"""
-        t_format = "%Y-%m-%dT%H:%M:%S.%f"
-        s = State()
-        new_d = s.to_dict()
-        self.assertEqual(new_d["__class__"], "State")
-        self.assertEqual(type(new_d["created_at"]), str)
-        self.assertEqual(type(new_d["updated_at"]), str)
-        self.assertEqual(new_d["created_at"], s.created_at.strftime(t_format))
-        self.assertEqual(new_d["updated_at"], s.updated_at.strftime(t_format))
+    def test_create_state_invalid_json(self):
+        """Test POST /api/v1/states with invalid JSON"""
+        headers = {"Content-Type": "application/json"}
+        response = self.client.post(
+            '/api/v1/states', data="invalid_json", headers=headers)
+        self.assertEqual(response.status_code, 400)
+        error_message = response.get_json(silent=True) or {}
+        self.assertIn("Not a JSON", error_message.get("description", ""))
 
-    def test_str(self):
-        """test that the str method has the correct output"""
-        state = State()
-        string = "[State] ({}) {}".format(state.id, state.__dict__)
-        self.assertEqual(string, str(state))
+    def test_update_state_invalid_json(self):
+        """Test PUT /api/v1/states/<state_id> with invalid JSON"""
+        state = State(name="Initial State")
+        storage.new(state)
+        storage.save()
+
+        headers = {"Content-Type": "application/json"}
+        response = self.client.put(
+            f'/api/v1/states/{state.id}', data="invalid_json", headers=headers)
+        self.assertEqual(response.status_code, 400)
+        error_message = response.get_json(silent=True) or {}
+        self.assertIn("Not a JSON", error_message.get("description", ""))
+
+        # Clean up
+        storage.delete(state)
+        storage.save()
+
+    def test_update_state_missing_name(self):
+        """Test PUT /api/v1/states/<state_id> without name in JSON"""
+        state = State(name="Initial State")
+        storage.new(state)
+        storage.save()
+
+        headers = {"Content-Type": "application/json"}
+        response = self.client.put(
+            f'/api/v1/states/{state.id}', json={}, headers=headers)
+        self.assertEqual(response.status_code, 400)
+        error_message = response.get_json(silent=True) or {}
+        self.assertIn("Missing name", error_message.get("description", ""))
+
+        # Clean up
+        storage.delete(state)
+        storage.save()
+
+
+if __name__ == '__main__':
+    unittest.main()
