@@ -67,19 +67,64 @@ class DBStorage:
                 except Exception as e:
                     logger.error(f"Failed to create table {table_name}: {str(e)}")
 
-    # ... (rest of the methods remain the same)
+    def reload(self):
+        """Reloads data from the database"""
+        Base.metadata.create_all(self.__engine)
+        sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        Session = scoped_session(sess_factory)
+        self.__session = Session
+
+    def all(self, cls=None):
+        """query on the current database session"""
+        new_dict = {}
+        for clss in classes:
+            if cls is None or cls is classes[clss] or cls is clss:
+                objs = self.__session.query(classes[clss]).all()
+                for obj in objs:
+                    key = obj.__class__.__name__ + '.' + obj.id
+                    new_dict[key] = obj
+        return (new_dict)
+
+    def new(self, obj):
+        """add the object to the current database session"""
+        self.__session.add(obj)
 
     def save(self):
-        """Commit all changes of the current database session"""
+        """commit all changes of the current database session"""
         try:
             self.__session.commit()
         except Exception as e:
             logger.error(f"Failed to commit changes: {str(e)}")
             self.__session.rollback()
 
+    def delete(self, obj=None):
+        """delete from the current database session obj if not None"""
+        if obj is not None:
+            self.__session.delete(obj)
+
     def close(self):
-        """Call remove() method on the private session attribute"""
+        """call remove() method on the private session attribute"""
         try:
             self.__session.remove()
         except Exception as e:
             logger.error(f"Failed to close session: {str(e)}")
+
+    def get(self, cls, id):
+        """Retrieves an object based on the class name and its ID."""
+        if cls is None or cls not in classes or id is None or type(id) is not str:
+            return None
+        cls = classes[cls]
+        objs = self.__session.query(cls).filter(cls.id == id)
+        if objs is None:
+            return None
+        return objs.first()
+
+    def count(self, cls=None):
+        """Retrieves the total number of object based on the class name."""
+        count = 0
+        for clss in classes:
+            if cls is None or cls is classes[clss] or cls is clss:
+                objs = self.__session.query(classes[clss]).all()
+                for obj in objs:
+                    count += 1
+        return count
