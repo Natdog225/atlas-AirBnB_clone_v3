@@ -47,7 +47,6 @@ class TestFileStorageDocs(unittest.TestCase):
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
-
     def test_file_storage_module_docstring(self):
         """Test for the file_storage.py module docstring"""
         self.assertIsNot(file_storage.__doc__, None,
