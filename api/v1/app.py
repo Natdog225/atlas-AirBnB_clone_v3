@@ -18,6 +18,7 @@ app.register_blueprint(app_views, url_prefix='/api/v1')
 
 CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 
+
 @app.after_request
 def after_request(response):
     response.headers.add('Access-Control-Allow-Headers',
