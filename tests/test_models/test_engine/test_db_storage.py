@@ -33,11 +33,10 @@ class TestDBStorageDocs(unittest.TestCase):
         os.environ['HBNB_MYSQL_HOST'] = 'localhost'
         os.environ['HBNB_MYSQL_DB'] = 'hbnb_test_db'
         os.environ['HBNB_ENV'] = 'test'
-        
+
         cls.storage = DBStorage()
         cls.storage.reload()
         Base.metadata.create_all(cls.storage.__engine)
-
 
     def test_pep8_conformance_db_storage(self):
         """Test that models/engine/db_storage.py conforms to PEP8."""
