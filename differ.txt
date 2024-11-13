@@ -1,0 +1,2488 @@
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..fa8c080
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,141 @@
++# Byte-compiled / optimized / DLL files
++*.pyc
++__pycache__/
++*.py[cod]
++*$py.class
++
++# C extensions
++*.so
++
++# Distribution / packaging
++.Python
++build/
++develop-eggs/
++dist/
++downloads/
++eggs/
++.eggs/
++lib/
++lib64/
++parts/
++sdist/
++var/
++wheels/
++*.egg-info/
++.installed.cfg
++*.egg
++
++MANIFEST
++
++# PyInstaller
++#  Usually these files are written by a python script from a template
++#  before PyInstaller builds the exe, so as to inject date/other infos into it.
++*.manifest
++*.spec
++
++# Installer logs
++pip-log.txt
++pip-delete-this-directory.txt
++
++
++# Unit test / coverage reports
++htmlcov/
++.tox/
++.nox/
++.coverage
++.coverage.*
++.cache
++nosetests.xml
++coverage.xml
++
++*.cover
++.hypothesis/
++.pytest_cache/
++
++# Translations
++*.mo
++*.pot
++
++# Django stuff:
++*.log
++local_settings.py
++db.sqlite3
++
++# Flask stuff:
++instance/
++.webassets-cache
++
++# Scrapy stuff:
++.scrapy
++
++# Sphinx documentation
++docs/_build/
++
++# PyBuilder
++target/
++
++# Jupyter   
++ Notebook
++.ipynb_checkpoints
++
++# IPython
++profile_default/
++ipython_config.py
++
++# pyenv
++.python-version
++
++# pipenv
++#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
++#   However, in case of collaboration, if having platform-specific dependencies or dependencies
++#   having no cross-platform support, pipenv may install dependencies that don't work, or not
++#   install all needed dependencies.
++#Pipfile.lock
++
++# PEP 582; used by e.g. github.com/David-OConnor/pyflow
++__pypackages__/
++
++# Celery stuff
++celerybeat-schedule
++
++# SageMath parsed files
++*.sage.py
++
++# Environments
++.env
++.venv
++env/
++venv/
++ENV/
++env.bak/
++venv.bak/
++
++# Spyder project settings
++.spyderproject
++.spyproject
++
++# Rope project settings
++.ropeproject
++
++# mkdocs documentation
++/site
++
++# mypy
++.mypy_cache/
++.dmypy.json
++dmypy.json
++
++# Pyre type checker
++.pyre/
++
++# pytype static type analyzer
++.pytype/
++
++# Cython debug symbols
++cython_debug/
++
++__pycache__/
++*.pyc
++models/__pycache__/place.cpython-310.pyc
++models/__pycache__/base_model.cpython-310.pyc
++tests/test_models/test_engine/__pycache__/test_db_storage.cpython-310.pyc
+diff --git a/.vscode/settings.json b/.vscode/settings.json
+new file mode 100644
+index 0000000..444aa59
+--- /dev/null
++++ b/.vscode/settings.json
+@@ -0,0 +1,5 @@
++{
++	"python.analysis.extraPaths": [
++		"./web_"
++	]
++}
+\ No newline at end of file
+diff --git a/1-pack_web_static.py b/1-pack_web_static.py
+old mode 100644
+new mode 100755
+diff --git a/2-do_deploy_web_static.py b/2-do_deploy_web_static.py
+old mode 100644
+new mode 100755
+diff --git a/3-deploy_web_static.py b/3-deploy_web_static.py
+old mode 100644
+new mode 100755
+diff --git a/AUTHORS b/AUTHORS
+index 64b26ac..07cecaa 100644
+--- a/AUTHORS
++++ b/AUTHORS
+@@ -1,6 +1,5 @@
+ # This file lists all individuals having contributed content to the repository.
+ 
+ 
+-Jennifer Huang <133@holbertonschool.com>
+-Alexa Orrico <210@holbertonschool.com>
+-Joann Vuong <130@holbertonschool.com> 
++<Nathan Wilson - [Github](https://github.com/Natdog225) / Nathaniel.wilson@atlasschool.com>
++<Tristian Davis - [Github](https://github.com/TebariousBag) / Tristian.davis@atlasschool.com>
+diff --git a/README.md b/README.md
+index d8fdc62..dfcedb3 100644
+--- a/README.md
++++ b/README.md
+@@ -154,11 +154,9 @@ EOF  all  create  destroy  help  quit  show  update
+ No known bugs at this time. 
+ 
+ ## Authors
+-- Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
+-- Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
+-- John Wilson - [Github](https://github.com/Paintballskaguy) / [Email](john.wilson@atlasschool.com)
+-- Donovan Heape - [Github](https://github.com/SudoSavvy) / [Email](donovan.heape@atlasschool.com)
++Nathan Wilson - [Github](https://github.com/Natdog225) / Nathaniel.wilson@atlasschool.com
++Tristian Davis - [Github](https://github.com/) / Tristian.davis@atlasschool.com
+ 
+ Second part of Airbnb: Joann Vuong
+ ## License
+-Public Domain. No copy write protection. 
++Public Domain. No copywrite protection. 
+diff --git a/__pycache__/console.cpython-310.pyc b/__pycache__/console.cpython-310.pyc
+deleted file mode 100644
+index 21627fa..0000000
+Binary files a/__pycache__/console.cpython-310.pyc and /dev/null differ
+diff --git a/api/__init__.py b/api/__init__.py
+index e69de29..a93a4bf 100644
+--- a/api/__init__.py
++++ b/api/__init__.py
+@@ -0,0 +1 @@
++#!/usr/bin/python3
+diff --git a/api/__pycache__/__init__.cpython-310.pyc b/api/__pycache__/__init__.cpython-310.pyc
+deleted file mode 100644
+index d6f6e0e..0000000
+Binary files a/api/__pycache__/__init__.cpython-310.pyc and /dev/null differ
+diff --git a/api/v1/__init__.py b/api/v1/__init__.py
+index e69de29..a93a4bf 100644
+--- a/api/v1/__init__.py
++++ b/api/v1/__init__.py
+@@ -0,0 +1 @@
++#!/usr/bin/python3
+diff --git a/api/v1/__pycache__/__init__.cpython-310.pyc b/api/v1/__pycache__/__init__.cpython-310.pyc
+deleted file mode 100644
+index 208a99f..0000000
+Binary files a/api/v1/__pycache__/__init__.cpython-310.pyc and /dev/null differ
+diff --git a/api/v1/__pycache__/app.cpython-310.pyc b/api/v1/__pycache__/app.cpython-310.pyc
+deleted file mode 100644
+index a74b60d..0000000
+Binary files a/api/v1/__pycache__/app.cpython-310.pyc and /dev/null differ
+diff --git a/api/v1/app.py b/api/v1/app.py
+index f1ac2b5..36afb86 100644
+--- a/api/v1/app.py
++++ b/api/v1/app.py
+@@ -4,10 +4,9 @@
+ Main app module to start Flask for the API
+ """
+ 
+-
++# No need to import HTTPException here
+ from flask import Flask, jsonify
+-from flask_cors import CORS
+-from api.v1.views.index import app_views
++from api.v1.views import app_views
+ from models import storage
+ 
+ # Initialize Flask
+@@ -15,8 +14,7 @@ app = Flask(__name__)
+ app.url_map.strict_slashes = False
+ app.register_blueprint(app_views)
+ 
+-CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
+-
++storage.reload()
+ 
+ @app.teardown_appcontext
+ def teardown_db(exception=None):
+@@ -33,4 +31,4 @@ if __name__ == "__main__":
+     import os
+     host = os.getenv('HBNB_API_HOST', '0.0.0.0')
+     port = int(os.getenv('HBNB_API_PORT', '5000'))
+-    app.run(host=host, port=port, threaded=True)
++    app.run(host=host, port=port, threaded=True, debug=True)
+diff --git a/api/v1/views/__init__.py b/api/v1/views/__init__.py
+index f22fc2b..9861071 100644
+--- a/api/v1/views/__init__.py
++++ b/api/v1/views/__init__.py
+@@ -1,18 +1,13 @@
+-"""
+-Initializes the views Blueprint for the API
+-"""
+-
++#!/usr/bin/python3
++""" Blueprint for API """
+ from flask import Blueprint
+ 
+-# Define the Blueprint for views
+-app_views = Blueprint("app_views", __name__, url_prefix="/api/v1")
+-
++app_views = Blueprint('app_views', __name__, url_prefix='/api/v1')
+ 
+-# Import views after defining app_views to avoid circular imports
+-from api.v1.views.index import *
++from api.v1.views.index import * #wildcard thing it wanted
+ from api.v1.views.states import *
+ from api.v1.views.cities import *
+ from api.v1.views.amenities import *
+-from api.v1.views.places import *
+ from api.v1.views.users import *
+-from api.v1.views.places_reviews import *
++from api.v1.views.places import *
++from api.v1.views.places_reviews import *
+\ No newline at end of file
+diff --git a/api/v1/views/__pycache__/__init__.cpython-310.pyc b/api/v1/views/__pycache__/__init__.cpython-310.pyc
+deleted file mode 100644
+index 844e2a1..0000000
+Binary files a/api/v1/views/__pycache__/__init__.cpython-310.pyc and /dev/null differ
+diff --git a/api/v1/views/__pycache__/amenities.cpython-310.pyc b/api/v1/views/__pycache__/amenities.cpython-310.pyc
+deleted file mode 100644
+index d6fa24a..0000000
+Binary files a/api/v1/views/__pycache__/amenities.cpython-310.pyc and /dev/null differ
+diff --git a/api/v1/views/__pycache__/cities.cpython-310.pyc b/api/v1/views/__pycache__/cities.cpython-310.pyc
+deleted file mode 100644
+index 5f79e03..0000000
+Binary files a/api/v1/views/__pycache__/cities.cpython-310.pyc and /dev/null differ
+diff --git a/api/v1/views/__pycache__/index.cpython-310.pyc b/api/v1/views/__pycache__/index.cpython-310.pyc
+deleted file mode 100644
+index cdf19ed..0000000
+Binary files a/api/v1/views/__pycache__/index.cpython-310.pyc and /dev/null differ
+diff --git a/api/v1/views/__pycache__/states.cpython-310.pyc b/api/v1/views/__pycache__/states.cpython-310.pyc
+deleted file mode 100644
+index c27dbae..0000000
+Binary files a/api/v1/views/__pycache__/states.cpython-310.pyc and /dev/null differ
+diff --git a/api/v1/views/__pycache__/users.cpython-310.pyc b/api/v1/views/__pycache__/users.cpython-310.pyc
+deleted file mode 100644
+index df8a5f3..0000000
+Binary files a/api/v1/views/__pycache__/users.cpython-310.pyc and /dev/null differ
+diff --git a/api/v1/views/amenities.py b/api/v1/views/amenities.py
+index 750ab83..0232dc3 100644
+--- a/api/v1/views/amenities.py
++++ b/api/v1/views/amenities.py
+@@ -1,67 +1,71 @@
+ #!/usr/bin/python3
+-"""
+-This module provides RESTful API actions for Amenity objects.
+-It includes routes to retrieve, create, delete, and update amenities.
+-"""
+-
+-from flask import jsonify, abort, request
++""" Amenity view """
++from flask import jsonify, abort, request, make_response
+ from api.v1.views import app_views
+ from models import storage
+ from models.amenity import Amenity
+ 
+ 
+-@app_views.route('/amenities', methods=['GET'])
+-def get_amenities():
++@app_views.route('/amenities', methods=['GET'], strict_slashes=False)
++def get_all_amenities():
+     """Retrieves the list of all Amenity objects."""
+-    amenities = storage.all(Amenity).values()
+-    return jsonify([amenity.to_dict() for amenity in amenities])
++    all_amenities = storage.all(Amenity).values()
++    list_amenities = []
++    for amenity in all_amenities:
++        list_amenities.append(amenity.to_dict())
++    return jsonify(list_amenities)
+ 
+ 
+-@app_views.route('/amenities/<amenity_id>', methods=['GET'])
++@app_views.route('/amenities/<amenity_id>', methods=['GET'],
++                 strict_slashes=False)
+ def get_amenity(amenity_id):
+     """Retrieves a specific Amenity by ID."""
+     amenity = storage.get(Amenity, amenity_id)
+-    if amenity is None:
+-        abort(404)
++    if not amenity:
++        abort(make_response(jsonify({"error": "Not found"}), 404))
+     return jsonify(amenity.to_dict())
+ 
+ 
+-@app_views.route('/amenities/<amenity_id>', methods=['DELETE'])
++@app_views.route('/amenities/<amenity_id>', methods=['DELETE'],
++                 strict_slashes=False)
+ def delete_amenity(amenity_id):
+     """Deletes an Amenity by ID."""
+     amenity = storage.get(Amenity, amenity_id)
+-    if amenity is None:
+-        abort(404)
++    if not amenity:
++        abort(make_response(jsonify({"error": "Not found"}), 404))
+     storage.delete(amenity)
+     storage.save()
+-    return jsonify({}), 200
++    return make_response(jsonify({}), 200)
+ 
+ 
+-@app_views.route('/amenities', methods=['POST'])
++@app_views.route('/amenities', methods=['POST'], strict_slashes=False)
+ def create_amenity():
+     """Creates a new Amenity."""
+-    data = request.get_json(silent=True)
+-    if not data:
+-        abort(400, description="Not a JSON")
+-    if 'name' not in data:
+-        abort(400, description="Missing name")
+-    new_amenity = Amenity(**data)
+-    storage.new(new_amenity)
+-    storage.save()
+-    return jsonify(new_amenity.to_dict()), 201
++    if not request.get_json():
++        abort(make_response(jsonify({"error": "Not a JSON"}), 400))
++    if 'name' not in request.get_json():
++        abort(make_response(jsonify({"error": "Missing name"}), 400))
++    data = request.get_json(silent=True)()
++    instance = Amenity(**data)
++    instance.save()
++    return make_response(jsonify(instance.to_dict()), 201)
+ 
+ 
+-@app_views.route('/amenities/<amenity_id>', methods=['PUT'])
++@app_views.route('/amenities/<amenity_id>', methods=['PUT'],
++                 strict_slashes=False)
+ def update_amenity(amenity_id):
+     """Updates an Amenity by ID."""
+     amenity = storage.get(Amenity, amenity_id)
+-    if amenity is None:
+-        abort(404)
+-    data = request.get_json(silent=True)
+-    if not data:
+-        abort(400, description="Not a JSON")
++    if not amenity:
++        abort(make_response(jsonify({"error": "Not found"}), 404))
++
++    if not request.get_json():
++        abort(make_response(jsonify({"error": "Not a JSON"}), 400))
++
++    ignore = ['id', 'created_at', 'updated_at']
++    data = request.get_json(silent=True)()
+     for key, value in data.items():
+-        if key not in ['id', 'created_at', 'updated_at']:
++        if key not in ignore:
+             setattr(amenity, key, value)
+     storage.save()
+-    return jsonify(amenity.to_dict()), 200
++    return make_response(jsonify(amenity.to_dict()), 200)
+diff --git a/api/v1/views/index.py b/api/v1/views/index.py
+index 29795c4..da6833c 100644
+--- a/api/v1/views/index.py
++++ b/api/v1/views/index.py
+@@ -1,36 +1,31 @@
+ #!/usr/bin/python3
+-
+-"""
+-Defines routes for index
+-"""
+-
+-
++"""Index file for reasons"""
+ from flask import jsonify
+ from api.v1.views import app_views
+-from models import storage
+-from models.amenity import Amenity
++from models.user import User
++from models.state import State
+ from models.city import City
++from models.amenity import Amenity
+ from models.place import Place
+ from models.review import Review
+-from models.state import State
+-from models.user import User
++from models import storage
+ 
+ 
+-@app_views.route('/status', methods=['GET'])
++@app_views.route('/status', methods=['GET'], strict_slashes=False)
+ def status():
+-    """checks the api status"""
++    """I know it seems crazy, but this defines the status of API"""
+     return jsonify({"status": "OK"})
+ 
+ 
+-@app_views.route('/stats', methods=['GET'])
+-def stats():
+-    """Returns the counts of each object by type."""
+-    stats_data = {
+-        "amenities": storage.count(Amenity),
+-        "cities": storage.count(City),
+-        "places": storage.count(Place),
+-        "reviews": storage.count(Review),
+-        "states": storage.count(State),
+-        "users": storage.count(User)
++@app_views.route('/stats', methods=['GET'], strict_slashes=False)
++def some_stats():
++    """ number of each object """
++    stats = {
++        "amenities": storage.count("Amenity"),
++        "cities": storage.count("City"),
++        "places": storage.count("Place"),
++        "reviews": storage.count("Review"),
++        "states": storage.count("State"),
++        "users": storage.count("User")
+     }
+-    return jsonify(stats_data)
++    return jsonify(stats)
+diff --git a/api/v1/views/places.py b/api/v1/views/places.py
+index 960ae22..9627045 100644
+--- a/api/v1/views/places.py
++++ b/api/v1/views/places.py
+@@ -1,10 +1,6 @@
+ #!/usr/bin/python3
+-"""
+-This module provides RESTful API actions for Place objects.
+-It includes routes to retrieve, create, delete, and update places.
+-"""
+-
+-from flask import jsonify, abort, request
++""" Place view """
++from flask import jsonify, abort, request, make_response
+ from api.v1.views import app_views
+ from models import storage
+ from models.city import City
+@@ -12,7 +8,8 @@ from models.place import Place
+ from models.user import User
+ 
+ 
+-@app_views.route('/cities/<city_id>/places', methods=['GET'])
++@app_views.route('/cities/<city_id>/places', methods=['GET'],
++                 strict_slashes=False)
+ def get_places_by_city(city_id):
+     """Retrieves the list of all Place objects of a City."""
+     city = storage.get(City, city_id)
+@@ -22,7 +19,7 @@ def get_places_by_city(city_id):
+     return jsonify(places)
+ 
+ 
+-@app_views.route('/places/<place_id>', methods=['GET'])
++@app_views.route('/places/<place_id>', methods=['GET'], strict_slashes=False)
+ def get_place(place_id):
+     """Retrieves a specific Place by ID."""
+     place = storage.get(Place, place_id)
+@@ -31,7 +28,8 @@ def get_place(place_id):
+     return jsonify(place.to_dict())
+ 
+ 
+-@app_views.route('/places/<place_id>', methods=['DELETE'])
++@app_views.route('/places/<place_id>', methods=['DELETE'],
++                 strict_slashes=False)
+ def delete_place(place_id):
+     """Deletes a Place by ID."""
+     place = storage.get(Place, place_id)
+@@ -42,53 +40,48 @@ def delete_place(place_id):
+     return jsonify({}), 200
+ 
+ 
+-@app_views.route('/cities/<city_id>/places', methods=['POST'])
++@app_views.route('/cities/<city_id>/places', methods=['POST'],
++                 strict_slashes=False)
+ def create_place(city_id):
+     """Creates a new Place under a specific City."""
+     city = storage.get(City, city_id)
+     if not city:
+         abort(404)
+-    if not request.is_json:
+-        abort(400, description="Not a JSON")
+ 
+-    data = request.get_json(silent=True)
+-    if data is None:
+-        abort(400, description="Not a JSON")
++    if not request.get_json():
++        abort(make_response(jsonify({"error": "Not a JSON"}), 400))
++
++    data = request.get_json(silent=True)()
+     if 'user_id' not in data:
+-        abort(400, description="Missing user_id")
++        abort(make_response(jsonify({"error": "Missing user_id"}), 400))
+     if 'name' not in data:
+-        abort(400, description="Missing name")
++        abort(make_response(jsonify({"error": "Missing name"}), 400))
+ 
+     user = storage.get(User, data['user_id'])
+     if not user:
+         abort(404)
+ 
+-    new_place = Place(
+-        name=data['name'], city_id=city_id, user_id=data['user_id']
+-        )
+-    for key, value in data.items():
+-        if key not in ['id', 'user_id', 'city_id', 'created_at', 'updated_at']:
+-            setattr(new_place, key, value)
+-
+-    storage.new(new_place)
+-    storage.save()
+-    return jsonify(new_place.to_dict()), 201
++    data['city_id'] = city_id
++    new_place = Place(**data)
++    new_place.save()
++    return make_response(jsonify(new_place.to_dict()), 201)
+ 
+ 
+-@app_views.route('/places/<place_id>', methods=['PUT'])
++@app_views.route('/places/<place_id>', methods=['PUT'], strict_slashes=False)
+ def update_place(place_id):
+     """Updates a Place by ID."""
+     place = storage.get(Place, place_id)
+     if not place:
+         abort(404)
+ 
+-    data = request.get_json(silent=True)
+-    if not data:
+-        abort(400, description="Not a JSON")
++    if not request.get_json():
++        abort(make_response(jsonify({"error": "Not a JSON"}), 400))
+ 
++    data = request.get_json(silent=True)()
+     for key, value in data.items():
+-        if key not in ['id', 'user_id', 'city_id', 'created_at', 'updated_at']:
++        if key not in ['id', 'user_id', 'city_id', 'created_at',
++                       'updated_at']:
+             setattr(place, key, value)
+ 
+     storage.save()
+-    return jsonify(place.to_dict()), 200
++    return make_response(jsonify(place.to_dict()), 200)
+diff --git a/api/v1/views/places_reviews.py b/api/v1/views/places_reviews.py
+index 70f30b5..d5f9314 100644
+--- a/api/v1/views/places_reviews.py
++++ b/api/v1/views/places_reviews.py
+@@ -1,11 +1,6 @@
+ #!/usr/bin/python3
+-
+-"""
+-This module provides RESTful API actions for Review objects.
+-It includes routes to retrieve, create, delete, and update reviews for places.
+-"""
+-
+-from flask import jsonify, abort, request
++""" Places view """
++from flask import jsonify, abort, request, make_response
+ from api.v1.views import app_views
+ from models import storage
+ from models.place import Place
+@@ -13,8 +8,9 @@ from models.review import Review
+ from models.user import User
+ 
+ 
+-@app_views.route('/places/<place_id>/reviews', methods=['GET'])
+-def get_reviews_by_place(place_id):
++@app_views.route('/places/<place_id>/reviews',
++                 methods=['GET'], strict_slashes=False)
++def get_all_reviews(place_id):
+     """Retrieves the list of all Review objects of a Place."""
+     place = storage.get(Place, place_id)
+     if not place:
+@@ -53,7 +49,7 @@ def create_review(place_id):
+     if not request.is_json:
+         abort(400, description="Not a JSON")
+ 
+-    data = request.get_json(silent=True)
++    data = request.get_json(silent=True)()
+     if 'user_id' not in data:
+         abort(400, description="Missing user_id")
+     if 'text' not in data:
+@@ -63,13 +59,11 @@ def create_review(place_id):
+     if not user:
+         abort(404)
+ 
+-    new_review = Review(
+-        text=data['text'], place_id=place_id, user_id=data['user_id']
+-    )
++    new_review = Review(text=data['text'], place_id=place_id,
++                        user_id=data['user_id'])
+     for key, value in data.items():
+-        if key not in [
+-            'id', 'user_id', 'place_id', 'created_at', 'updated_at'
+-        ]:
++        if key not in ['id', 'user_id', 'place_id',
++                       'created_at', 'updated_at']:
+             setattr(new_review, key, value)
+ 
+     storage.new(new_review)
+@@ -87,11 +81,10 @@ def update_review(review_id):
+     if not request.is_json:
+         abort(400, description="Not a JSON")
+ 
+-    data = request.get_json(silent=True)
++    data = request.get_json(silent=True)()
+     for key, value in data.items():
+-        if key not in [
+-            'id', 'user_id', 'place_id', 'created_at', 'updated_at'
+-        ]:
++        if key not in ['id', 'user_id', 'place_id',
++                       'created_at', 'updated_at']:
+             setattr(review, key, value)
+ 
+     storage.save()
+diff --git a/api/v1/views/states.py b/api/v1/views/states.py
+index afdb045..27116fd 100644
+--- a/api/v1/views/states.py
++++ b/api/v1/views/states.py
+@@ -5,70 +5,67 @@ This module includes routes for retrieving, creating,
+ updating, and deleting State objects.
+ """
+ 
+-from flask import jsonify, request, abort
++from flask import jsonify, request, abort, make_response
+ from models import storage
+ from models.state import State
+ from api.v1.views import app_views
+ 
+ 
+-@app_views.route('/states', methods=['GET'])
++@app_views.route('/states', methods=['GET'], strict_slashes=False)
+ def get_states():
+     """Retrieves the list of all State objects"""
+     states = [state.to_dict() for state in storage.all(State).values()]
+     return jsonify(states)
+ 
+ 
+-@app_views.route('/states/<state_id>', methods=['GET'])
++@app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
+ def get_state(state_id):
+     """Retrieves a specific State object by ID"""
+     state = storage.get(State, state_id)
+     if not state:
+-        abort(404)
++        abort(404)  # Consider returning a JSON error response
+     return jsonify(state.to_dict())
+ 
+ 
+-@app_views.route(
+-    '/states/<state_id>', methods=['DELETE'])
++@app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
+ def delete_state(state_id):
+     """Deletes a State object by ID"""
+     state = storage.get(State, state_id)
+-    if state is None:
+-        abort(404)
++    if not state:
++        abort(404)  # Consider returning a JSON error response
+     storage.delete(state)
+     storage.save()
+-    return jsonify({}), 200
++    return jsonify({}), 200  # No need for make_response here
+ 
+ 
+-@app_views.route('/states', methods=['POST'])
++@app_views.route('/states', methods=['POST'], strict_slashes=False)
+ def create_state():
+     """Creates a new State object"""
+-    data = request.get_json(silent=True)
++    data = request.get_json(silent=True)(silent=True)
+     if data is None:
+-        abort(400, description="Not a JSON")
++        abort(make_response(jsonify({"error": "Not a JSON"}), 400))
+     if 'name' not in data:
+-        abort(400, description="Missing name")
++        abort(make_response(jsonify({"error": "Missing name"}), 400))
+     new_state = State(**data)
+-    storage.new(new_state)
+-    storage.save()
+-    return jsonify(new_state.to_dict()), 201
++    new_state.save()
++    return make_response(jsonify(new_state.to_dict()), 201)
+ 
+ 
+-@app_views.route('/states/<state_id>', methods=['PUT'])
++@app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
+ def update_state(state_id):
+     """Updates an existing State object by ID"""
+     state = storage.get(State, state_id)
+-    if state is None:
+-        abort(404)
++    if not state:
++        abort(404)  # Consider returning a JSON error response
+ 
+-    data = request.get_json(silent=True)
++    data = request.get_json(silent=True)(silent=True)
+     if not data:
+-        abort(400, description="Not a JSON")
++        abort(make_response(jsonify({"error": "Not a JSON"}), 400))
+ 
+-    # Ignore keys not allowed to be updated
+     ignore_keys = ['id', 'created_at', 'updated_at']
+     for key, value in data.items():
+         if key not in ignore_keys:
+             setattr(state, key, value)
+ 
+-    storage.save()
+-    return jsonify(state.to_dict()), 200
++    state.save()
++    return make_response(jsonify(state.to_dict()), 200)
+diff --git a/api/v1/views/users.py b/api/v1/views/users.py
+index 0e025d9..0f39b9a 100644
+--- a/api/v1/views/users.py
++++ b/api/v1/views/users.py
+@@ -1,69 +1,80 @@
+ #!/usr/bin/python3
+-"""
+-This module provides RESTful API actions for User objects.
+-It includes routes to retrieve, create, delete, and update users.
+-"""
+-
+-from flask import jsonify, abort, request
++""" User view """
++from flask import jsonify, abort, request, make_response
+ from api.v1.views import app_views
+ from models import storage
+ from models.user import User
+ 
+ 
+-@app_views.route('/users', methods=['GET'])
++@app_views.route('/users', methods=['GET'], strict_slashes=False)
+ def get_users():
+     """Retrieves the list of all User objects."""
+-    users = storage.all(User).values()
+-    return jsonify([user.to_dict() for user in users])
++    all_users = storage.all(User).values()
++    list_users = []
++    for user in all_users:
++        list_users.append(user.to_dict())
++    return jsonify(list_users)
+ 
+ 
+-@app_views.route('/users/<user_id>', methods=['GET'])
++@app_views.route('/users/<user_id>', methods=['GET'], strict_slashes=False)
+ def get_user(user_id):
+-    """Retrieves a specific User by ID."""
++    """Retrieves a User object with the given ID"""
+     user = storage.get(User, user_id)
+-    if user is None:
++    if not user:
+         abort(404)
++
+     return jsonify(user.to_dict())
+ 
+ 
+-@app_views.route('/users/<user_id>', methods=['DELETE'])
++@app_views.route('/users/<user_id>', methods=['DELETE'],
++                 strict_slashes=False)
+ def delete_user(user_id):
+-    """Deletes a User by ID."""
++    """Deletes a User object with the given ID."""
+     user = storage.get(User, user_id)
+-    if user is None:
++
++    if not user:
+         abort(404)
++
+     storage.delete(user)
+     storage.save()
+-    return jsonify({}), 200
+-
+-
+-@app_views.route('/users', methods=['POST'])
+-def create_user():
+-    """Creates a new User."""
+-    data = request.get_json(silent=True)
+-    if not data:
+-        abort(400, description="Not a JSON")
+-    if 'email' not in data:
+-        abort(400, description="Missing email")
+-    if 'password' not in data:
+-        abort(400, description="Missing password")
+-    new_user = User(**data)
+-    storage.new(new_user)
+-    storage.save()
+-    return jsonify(new_user.to_dict()), 201
+ 
++    return make_response(jsonify({}), 200)
++
++
++@app_views.route('/users', methods=['POST'], strict_slashes=False)
++def post_user():
++    """Creates a new User object."""
++    if not request.get_json():
++        abort(make_response(jsonify({"error": "Not a JSON"}), 400))
++
++    if 'email' not in request.get_json():
++        abort(make_response(jsonify({"error": "Missing email"}), 400))
+ 
+-@app_views.route('/users/<user_id>', methods=['PUT'])
+-def update_user(user_id):
+-    """Updates a User by ID."""
++    if 'password' not in request.get_json():
++        abort(make_response(jsonify({"error": "Missing password"}), 400))
++
++    data = request.get_json(silent=True)()
++    instance = User(**data)
++    instance.save()
++
++    return make_response(jsonify(instance.to_dict()), 201)
++
++
++@app_views.route('/users/<user_id>', methods=['PUT'], strict_slashes=False)
++def put_user(user_id):
++    """Updates a User object with the given ID."""
+     user = storage.get(User, user_id)
+-    if user is None:
++    if not user:
+         abort(404)
+-    data = request.get_json(silent=True)
+-    if not data:
+-        abort(400, description="Not a JSON")
++
++    if not request.get_json():
++        abort(make_response(jsonify({"error": "Not a JSON"}), 400))
++
++    ignore = ['id', 'email', 'created_at', 'updated_at']
++
++    data = request.get_json(silent=True)()
+     for key, value in data.items():
+-        if key not in ['id', 'email', 'created_at', 'updated_at']:
++        if key not in ignore:
+             setattr(user, key, value)
+     storage.save()
+-    return jsonify(user.to_dict()), 200
++    return make_response(jsonify(user.to_dict()), 200)
+diff --git a/code_review.txt b/code_review.txt
+deleted file mode 100644
+index 466eabe..0000000
+--- a/code_review.txt
++++ /dev/null
+@@ -1 +0,0 @@
+-Paintballskaguy:master
+\ No newline at end of file
+diff --git a/file.json b/file.json
+index 653f32e..8791100 100644
+--- a/file.json
++++ b/file.json
+@@ -1 +1 @@
+-{"Amenity.60686781-c2a6-4d6e-9884-468f68bc43b8": {"id": "60686781-c2a6-4d6e-9884-468f68bc43b8", "created_at": "2024-11-11T20:13:29.463116", "updated_at": "2024-11-11T20:13:29.463116", "__class__": "Amenity"}, "BaseModel.02e4619f-78cc-45fd-b366-d16b335df267": {"id": "02e4619f-78cc-45fd-b366-d16b335df267", "created_at": "2024-11-11T20:13:29.463137", "updated_at": "2024-11-11T20:13:29.463137", "__class__": "BaseModel"}, "City.30a28e0a-c445-4509-aba8-b1f2e13b4e3c": {"id": "30a28e0a-c445-4509-aba8-b1f2e13b4e3c", "created_at": "2024-11-11T20:13:29.463152", "updated_at": "2024-11-11T20:13:29.463152", "__class__": "City"}, "Place.5898cdb4-7818-4c5c-825e-de1b34f667d9": {"id": "5898cdb4-7818-4c5c-825e-de1b34f667d9", "created_at": "2024-11-11T20:13:29.463163", "updated_at": "2024-11-11T20:13:29.463163", "__class__": "Place"}, "Review.c51c18ca-a9e0-41d1-8d3e-b778cc0d3892": {"id": "c51c18ca-a9e0-41d1-8d3e-b778cc0d3892", "created_at": "2024-11-11T20:13:29.463174", "updated_at": "2024-11-11T20:13:29.463174", "__class__": "Review"}, "User.0e2b6e9f-f869-4b15-bccb-a7edb75922d5": {"id": "0e2b6e9f-f869-4b15-bccb-a7edb75922d5", "created_at": "2024-11-11T20:13:29.463196", "updated_at": "2024-11-11T20:13:29.463196", "__class__": "User"}, "City.d3698a1d-f978-4cb8-b76c-a1a014eee280": {"name": "TestCityToDelete", "state_id": "d6412174-a473-4eef-8264-6b885ab34c81", "created_at": "2024-11-11T21:06:55.857634", "updated_at": "2024-11-11T21:06:55.857639", "id": "d3698a1d-f978-4cb8-b76c-a1a014eee280", "__class__": "City"}, "City.685a6f0e-970b-46f1-a32b-6dbbc76eb7e5": {"name": "TestCity", "state_id": "23beac3a-d660-4efa-962b-7404d8a0f825", "created_at": "2024-11-11T21:06:55.865431", "updated_at": "2024-11-11T21:06:55.865434", "id": "685a6f0e-970b-46f1-a32b-6dbbc76eb7e5", "__class__": "City"}, "City.afe3e929-9603-4127-b90d-a7dd0c702c6e": {"name": "OldCity", "state_id": "17ce449c-b12f-47d2-af76-890065995bf8", "created_at": "2024-11-11T21:06:55.869315", "updated_at": "2024-11-11T21:06:55.869320", "id": "afe3e929-9603-4127-b90d-a7dd0c702c6e", "__class__": "City"}, "City.e59256de-615a-444b-9556-b28ac2c3463f": {"name": "CityWithBadData", "state_id": "d195c5e3-2d98-49c3-98a5-5a42cbd1ed8b", "created_at": "2024-11-11T21:06:55.875386", "updated_at": "2024-11-11T21:06:55.875391", "id": "e59256de-615a-444b-9556-b28ac2c3463f", "__class__": "City"}}
+\ No newline at end of file
++{"State.f7750cc4-0560-4b28-ae83-f470e78414a4": {"id": "f7750cc4-0560-4b28-ae83-f470e78414a4", "created_at": "2024-11-11T20:27:53.939354", "updated_at": "2024-11-11T20:27:53.939446", "__class__": "State"}, "City.451ab2fa-555c-447b-b180-cae4ab89daf2": {"id": "451ab2fa-555c-447b-b180-cae4ab89daf2", "created_at": "2024-11-11T20:29:14.901883", "updated_at": "2024-11-11T20:29:14.901974", "__class__": "City"}, "Amenity.b8798979-cd93-4484-8363-75527657139d": {"id": "b8798979-cd93-4484-8363-75527657139d", "created_at": "2024-11-11T20:29:38.798726", "updated_at": "2024-11-11T20:29:38.798793", "__class__": "Amenity"}, "State.5b863499-a097-42f3-a634-27b0ff26de2d": {"id": "5b863499-a097-42f3-a634-27b0ff26de2d", "created_at": "2024-11-11T20:29:59.121471", "updated_at": "2024-11-11T20:29:59.121533", "__class__": "State"}, "State.d3d6fecc-a1cb-40cd-a360-eb68c37ce7af": {"id": "d3d6fecc-a1cb-40cd-a360-eb68c37ce7af", "created_at": "2024-11-11T20:30:07.676367", "updated_at": "2024-11-11T20:30:07.676431", "__class__": "State"}, "City.e384f5b2-63cc-46f2-82c7-314a3f689d9b": {"id": "e384f5b2-63cc-46f2-82c7-314a3f689d9b", "created_at": "2024-11-11T20:30:37.043412", "updated_at": "2024-11-11T20:30:37.043452", "__class__": "City"}, "State.ab32e6d7-b272-4b50-8f63-4b833c310a15": {"name": "California", "created_at": "2024-11-11T22:27:55.367021", "updated_at": "2024-11-11T22:27:55.367098", "id": "ab32e6d7-b272-4b50-8f63-4b833c310a15", "__class__": "State"}, "State.dca65e18-8865-44ca-a3ff-2b253b6c0f9f": {"id": "dca65e18-8865-44ca-a3ff-2b253b6c0f9f", "created_at": "2024-11-12T23:45:54.495241", "updated_at": "2024-11-12T23:45:54.495307", "__class__": "State"}}
+\ No newline at end of file
+diff --git a/models/__init__.py b/models/__init__.py
+index defef63..47fc566 100755
+--- a/models/__init__.py
++++ b/models/__init__.py
+@@ -3,15 +3,35 @@
+ initialize the models package
+ """
+ 
++import logging
+ from os import getenv
+ 
++# Set up logging
++logging.basicConfig(level=logging.INFO)
++logger = logging.getLogger(__name__)
+ 
+ storage_t = getenv("HBNB_TYPE_STORAGE")
+ 
+ if storage_t == "db":
+     from models.engine.db_storage import DBStorage
+     storage = DBStorage()
++    logger.info("Using DBStorage")
+ else:
+     from models.engine.file_storage import FileStorage
+     storage = FileStorage()
++    logger.info("Using FileStorage")
++
++# Reload storage to ensure tables are created
+ storage.reload()
++logger.info("Storage reloaded successfully")
++
++# Import all models to ensure they're registered with SQLAlchemy
++from models.amenity import Amenity
++from models.base_model import BaseModel
++from models.city import City
++from models.place import Place
++from models.review import Review
++from models.state import State
++from models.user import User
++
++logger.info("All models imported successfully")
+diff --git a/models/__pycache__/__init__.cpython-310.pyc b/models/__pycache__/__init__.cpython-310.pyc
+deleted file mode 100644
+index 707cc09..0000000
+Binary files a/models/__pycache__/__init__.cpython-310.pyc and /dev/null differ
+diff --git a/models/__pycache__/amenity.cpython-310.pyc b/models/__pycache__/amenity.cpython-310.pyc
+deleted file mode 100644
+index 76ac7d4..0000000
+Binary files a/models/__pycache__/amenity.cpython-310.pyc and /dev/null differ
+diff --git a/models/__pycache__/base_model.cpython-310.pyc b/models/__pycache__/base_model.cpython-310.pyc
+deleted file mode 100644
+index 581887a..0000000
+Binary files a/models/__pycache__/base_model.cpython-310.pyc and /dev/null differ
+diff --git a/models/__pycache__/city.cpython-310.pyc b/models/__pycache__/city.cpython-310.pyc
+deleted file mode 100644
+index d41101a..0000000
+Binary files a/models/__pycache__/city.cpython-310.pyc and /dev/null differ
+diff --git a/models/__pycache__/place.cpython-310.pyc b/models/__pycache__/place.cpython-310.pyc
+deleted file mode 100644
+index 9fc7df2..0000000
+Binary files a/models/__pycache__/place.cpython-310.pyc and /dev/null differ
+diff --git a/models/__pycache__/review.cpython-310.pyc b/models/__pycache__/review.cpython-310.pyc
+deleted file mode 100644
+index 934b3bd..0000000
+Binary files a/models/__pycache__/review.cpython-310.pyc and /dev/null differ
+diff --git a/models/__pycache__/state.cpython-310.pyc b/models/__pycache__/state.cpython-310.pyc
+deleted file mode 100644
+index 929fb11..0000000
+Binary files a/models/__pycache__/state.cpython-310.pyc and /dev/null differ
+diff --git a/models/__pycache__/user.cpython-310.pyc b/models/__pycache__/user.cpython-310.pyc
+deleted file mode 100644
+index b6946d6..0000000
+Binary files a/models/__pycache__/user.cpython-310.pyc and /dev/null differ
+diff --git a/models/amenity.py b/models/amenity.py
+index 557728b..977f63a 100755
+--- a/models/amenity.py
++++ b/models/amenity.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ """ holds class Amenity"""
+ import models
+ from models.base_model import BaseModel, Base
+diff --git a/models/base_model.py b/models/base_model.py
+index 9a86add..d259e3f 100755
+--- a/models/base_model.py
++++ b/models/base_model.py
+@@ -3,7 +3,7 @@
+ Contains class BaseModel
+ """
+ 
+-from datetime import datetime
++from datetime import datetime, timezone
+ import models
+ from os import getenv
+ import sqlalchemy
+@@ -23,8 +23,8 @@ class BaseModel:
+     """The BaseModel class from which future classes will be derived"""
+     if models.storage_t == "db":
+         id = Column(String(60), primary_key=True)
+-        created_at = Column(DateTime, default=datetime.utcnow)
+-        updated_at = Column(DateTime, default=datetime.utcnow)
++        created_at = Column(DateTime, default=datetime.now(timezone.utc))
++        updated_at = Column(DateTime, default=datetime.now(timezone.utc))
+ 
+     def __init__(self, *args, **kwargs):
+         """Initialization of the base model"""
+@@ -35,16 +35,16 @@ class BaseModel:
+             if kwargs.get("created_at", None) and type(self.created_at) is str:
+                 self.created_at = datetime.strptime(kwargs["created_at"], time)
+             else:
+-                self.created_at = datetime.utcnow()
++                self.created_at = datetime.now(timezone.utc)
+             if kwargs.get("updated_at", None) and type(self.updated_at) is str:
+                 self.updated_at = datetime.strptime(kwargs["updated_at"], time)
+             else:
+-                self.updated_at = datetime.utcnow()
++                self.updated_at = datetime.now(timezone.utc)
+             if kwargs.get("id", None) is None:
+                 self.id = str(uuid.uuid4())
+         else:
+             self.id = str(uuid.uuid4())
+-            self.created_at = datetime.utcnow()
++            self.created_at = datetime.now(timezone.utc)
+             self.updated_at = self.created_at
+ 
+     def __str__(self):
+@@ -54,7 +54,7 @@ class BaseModel:
+ 
+     def save(self):
+         """updates the attribute 'updated_at' with the current datetime"""
+-        self.updated_at = datetime.utcnow()
++        self.updated_at = datetime.now(timezone.utc)
+         models.storage.new(self)
+         models.storage.save()
+ 
+diff --git a/models/city.py b/models/city.py
+index 8c46f0d..69efb25 100755
+--- a/models/city.py
++++ b/models/city.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ """ holds class City"""
+ import models
+ from models.base_model import BaseModel, Base
+diff --git a/models/engine/__pycache__/__init__.cpython-310.pyc b/models/engine/__pycache__/__init__.cpython-310.pyc
+deleted file mode 100644
+index 9d2bafc..0000000
+Binary files a/models/engine/__pycache__/__init__.cpython-310.pyc and /dev/null differ
+diff --git a/models/engine/__pycache__/db_storage.cpython-310.pyc b/models/engine/__pycache__/db_storage.cpython-310.pyc
+deleted file mode 100644
+index 10d87b5..0000000
+Binary files a/models/engine/__pycache__/db_storage.cpython-310.pyc and /dev/null differ
+diff --git a/models/engine/__pycache__/file_storage.cpython-310.pyc b/models/engine/__pycache__/file_storage.cpython-310.pyc
+deleted file mode 100644
+index c273240..0000000
+Binary files a/models/engine/__pycache__/file_storage.cpython-310.pyc and /dev/null differ
+diff --git a/models/engine/db_storage.py b/models/engine/db_storage.py
+index 4658371..e87a78e 100755
+--- a/models/engine/db_storage.py
++++ b/models/engine/db_storage.py
+@@ -2,7 +2,6 @@
+ """
+ Contains the class DBStorage
+ """
+-
+ import models
+ from models.amenity import Amenity
+ from models.base_model import BaseModel, Base
+@@ -12,35 +11,71 @@ from models.review import Review
+ from models.state import State
+ from models.user import User
+ from os import getenv
++import sqlalchemy
++from sqlalchemy.ext.declarative import declarative_base
+ from sqlalchemy import create_engine
+ from sqlalchemy.orm import scoped_session, sessionmaker
++import logging
++
++logging.basicConfig(level=logging.INFO)
++logger = logging.getLogger(__name__)
++
++Base = declarative_base()
+ 
+ classes = {"Amenity": Amenity, "City": City,
+            "Place": Place, "Review": Review, "State": State, "User": User}
+ 
+ 
+ class DBStorage:
+-    """Interacts with the MySQL database"""
++    """interacts with the MySQL database"""
+     __engine = None
+     __session = None
+ 
+     def __init__(self):
+         """Instantiate a DBStorage object"""
++        logger.info("Initializing DBStorage...")
+         HBNB_MYSQL_USER = getenv('HBNB_MYSQL_USER')
+         HBNB_MYSQL_PWD = getenv('HBNB_MYSQL_PWD')
+         HBNB_MYSQL_HOST = getenv('HBNB_MYSQL_HOST')
+         HBNB_MYSQL_DB = getenv('HBNB_MYSQL_DB')
+         HBNB_ENV = getenv('HBNB_ENV')
+-        self.__engine = create_engine(
+-            'mysql+mysqldb://{}:{}@{}/{}'.format(
+-                HBNB_MYSQL_USER, HBNB_MYSQL_PWD, HBNB_MYSQL_HOST, HBNB_MYSQL_DB
+-            )
+-        )
+-        if HBNB_ENV == "test":
+-            Base.metadata.drop_all(self.__engine)
++        
++        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.format(
++            HBNB_MYSQL_USER, HBNB_MYSQL_PWD, HBNB_MYSQL_HOST, HBNB_MYSQL_DB))
++        
++        logger.info("Creating tables...")
++        Base.metadata.create_all(self.__engine)
++        
++        logger.info("Initializing session...")
++        self.reload()
++        
++        logger.info("Verifying table existence...")
++        self.verify_tables_existence()
++
++    def verify_tables_existence(self):
++        """Check if tables exist and create them if they don't"""
++        inspector = sqlalchemy.inspect(self.__engine)
++        
++        for table_name in classes.keys():
++            table_name_lower = table_name.lower()
++            
++            if not inspector.has_table(table_name_lower):
++                logger.info(f"Creating table {table_name}")
++                try:
++                    Base.metadata.tables[table_name_lower].create(self.__engine)
++                    logger.info(f"Table {table_name} created successfully")
++                except Exception as e:
++                    logger.error(f"Failed to create table {table_name}: {str(e)}")
++
++    def reload(self):
++        """Reloads data from the database"""
++        Base.metadata.create_all(self.__engine)
++        sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
++        Session = scoped_session(sess_factory)
++        self.__session = Session
+ 
+     def all(self, cls=None):
+-        """Query on the current database session"""
++        """query on the current database session"""
+         new_dict = {}
+         for clss in classes:
+             if cls is None or cls is classes[clss] or cls is clss:
+@@ -48,41 +83,48 @@ class DBStorage:
+                 for obj in objs:
+                     key = obj.__class__.__name__ + '.' + obj.id
+                     new_dict[key] = obj
+-        return new_dict
++        return (new_dict)
+ 
+     def new(self, obj):
+-        """Add the object to the current database session"""
++        """add the object to the current database session"""
+         self.__session.add(obj)
+ 
+     def save(self):
+-        """Commit all changes of the current database session"""
+-        self.__session.commit()
++        """commit all changes of the current database session"""
++        try:
++            self.__session.commit()
++        except Exception as e:
++            logger.error(f"Failed to commit changes: {str(e)}")
++            self.__session.rollback()
+ 
+     def delete(self, obj=None):
+-        """Delete from the current database session obj if not None"""
++        """delete from the current database session obj if not None"""
+         if obj is not None:
+             self.__session.delete(obj)
+ 
+-    def reload(self):
+-        """Reloads data from the database"""
+-        Base.metadata.create_all(self.__engine)
+-        sess_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+-        Session = scoped_session(sess_factory)
+-        self.__session = Session
+-
+     def close(self):
+-        """Call remove() method on the private session attribute"""
+-        self.__session.remove()
++        """call remove() method on the private session attribute"""
++        try:
++            self.__session.remove()
++        except Exception as e:
++            logger.error(f"Failed to close session: {str(e)}")
+ 
+     def get(self, cls, id):
+-        """Retrieve one object based on the
+-        class and ID, or None if not found."""
+-        if cls and id:
+-            key = "{}.{}".format(cls.__name__, id)
+-            return self.all(cls).get(key)
+-        return None
++        """Retrieves an object based on the class name and its ID."""
++        if cls is None or cls not in classes or id is None or type(id) is not str:
++            return None
++        cls = classes[cls]
++        objs = self.__session.query(cls).filter(cls.id == id)
++        if objs is None:
++            return None
++        return objs.first()
+ 
+     def count(self, cls=None):
+-        """Count the number of objects in storage.
+-        If cls is provided, count only those objects."""
+-        return len(self.all(cls))
++        """Retrieves the total number of object based on the class name."""
++        count = 0
++        for clss in classes:
++            if cls is None or cls is classes[clss] or cls is clss:
++                objs = self.__session.query(classes[clss]).all()
++                for obj in objs:
++                    count += 1
++        return count
+diff --git a/models/engine/file_storage.py b/models/engine/file_storage.py
+index 7308d2b..e26fc41 100755
+--- a/models/engine/file_storage.py
++++ b/models/engine/file_storage.py
+@@ -1,8 +1,8 @@
+ #!/usr/bin/python3
+ """
+-Contains the FileStorage class
++This module contains the FileStorage class, which handles file-based storage
++operations for the application.
+ """
+-
+ import json
+ from models.amenity import Amenity
+ from models.base_model import BaseModel
+@@ -17,13 +17,15 @@ classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
+ 
+ 
+ class FileStorage:
+-    """Serializes instances to a JSON file & deserializes back to instances"""
++    """serializes instances to a JSON file & deserializes back to instances"""
+ 
+-    __file_path = "file.json"  # string - path to the JSON file
+-    __objects = {}  # dictionary - stores all objects by <class name>.id
++    # string - path to the JSON file
++    __file_path = "file.json"
++    # dictionary - empty but will store all objects by <class name>.id
++    __objects = {}
+ 
+     def all(self, cls=None):
+-        """Returns the dictionary __objects"""
++        """returns the dictionary __objects"""
+         if cls is not None:
+             new_dict = {}
+             for key, value in self.__objects.items():
+@@ -33,20 +35,21 @@ class FileStorage:
+         return self.__objects
+ 
+     def new(self, obj):
+-        """Sets in __objects the obj with key <obj class name>.id"""
++        """sets in __objects the obj with key <obj class name>.id"""
+         if obj is not None:
+             key = obj.__class__.__name__ + "." + obj.id
+             self.__objects[key] = obj
+ 
+     def save(self):
+-        """Serializes __objects to the JSON file (path: __file_path)"""
+-        json_objects = {key: self.__objects[key].to_dict()
+-                        for key in self.__objects}
++        """serializes __objects to the JSON file (path: __file_path)"""
++        json_objects = {}
++        for key in self.__objects:
++            json_objects[key] = self.__objects[key].to_dict()
+         with open(self.__file_path, 'w') as f:
+             json.dump(json_objects, f)
+ 
+     def reload(self):
+-        """Deserializes the JSON file to __objects"""
++        """deserializes the JSON file to __objects"""
+         try:
+             with open(self.__file_path, 'r') as f:
+                 jo = json.load(f)
+@@ -56,29 +59,33 @@ class FileStorage:
+             pass
+ 
+     def delete(self, obj=None):
+-        """Delete obj from __objects if it’s inside"""
++        """delete obj from __objects if it's inside"""
+         if obj is not None:
+             key = obj.__class__.__name__ + '.' + obj.id
+             if key in self.__objects:
+                 del self.__objects[key]
+ 
+     def close(self):
+-        """Call reload() method for deserializing the JSON file to objects"""
++        """call reload() method for deserializing the JSON file to objects"""
+         self.reload()
+ 
+     def get(self, cls, id):
+         """
+-        Retrieve one object based on the
+-        class and ID, or None if not found.
++        Retrieve one object based on class name and ID.
+         """
+-        if cls and id:
+-            key = "{}.{}".format(cls.__name__, id)
+-            return self.all(cls).get(key)
++        if cls in classes.values():
++            for obj in self.__objects.values():
++                if isinstance(obj, cls) and obj.id == id:
++                    return obj
+         return None
+ 
+     def count(self, cls=None):
+         """
+-        Count the number of objects in storage.
+-        If cls is provided, count only those objects.
++        Count the number of objects in storage matching the given class.
++        If no class is passed, returns the count of all objects in storage.
+         """
+-        return len(self.all(cls))
++        if cls is None:
++            return len(self.__objects)
++        else:
++            return sum(1 for obj in
++                       self.__objects.values() if type(obj) == cls)  # noqa: E721
+diff --git a/models/place.py b/models/place.py
+index 0aed5a7..a21b9b0 100755
+--- a/models/place.py
++++ b/models/place.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ """ holds class Place"""
+ import models
+ from models.base_model import BaseModel, Base
+diff --git a/models/review.py b/models/review.py
+index cd6c1d1..2a1ab97 100755
+--- a/models/review.py
++++ b/models/review.py
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/python3
+ """ holds class Review"""
+ import models
+ from models.base_model import BaseModel, Base
+diff --git a/setup_mysql_test.sql b/setup_mysql_test.sql
+index ddb4420..a327301 100644
+--- a/setup_mysql_test.sql
++++ b/setup_mysql_test.sql
+@@ -1,6 +1,7 @@
+ -- prepares a MySQL server for the project
+ 
+ CREATE DATABASE IF NOT EXISTS hbnb_test_db;
++USE hbnb_test_db;
+ CREATE USER IF NOT EXISTS 'hbnb_test'@'localhost' IDENTIFIED BY 'hbnb_test_pwd';
+ GRANT ALL PRIVILEGES ON `hbnb_test_db`.* TO 'hbnb_test'@'localhost';
+ GRANT SELECT ON `performance_schema`.* TO 'hbnb_test'@'localhost';
+diff --git a/test_get_count.py b/test_get_count.py
+new file mode 100755
+index 0000000..18194df
+--- /dev/null
++++ b/test_get_count.py
+@@ -0,0 +1,11 @@
++#!/usr/bin/python3
++""" Test .get() and .count() methods
++"""
++from models import storage
++from models.state import State
++
++print("All objects: {}".format(storage.count()))
++print("State objects: {}".format(storage.count(State)))
++
++first_state_id = list(storage.all(State).values())[0].id
++print("First state: {}".format(storage.get(State, first_state_id)))
+diff --git a/tests/__pycache__/__init__.cpython-310.pyc b/tests/__pycache__/__init__.cpython-310.pyc
+deleted file mode 100644
+index 124cef0..0000000
+Binary files a/tests/__pycache__/__init__.cpython-310.pyc and /dev/null differ
+diff --git a/tests/__pycache__/test_console.cpython-310.pyc b/tests/__pycache__/test_console.cpython-310.pyc
+deleted file mode 100644
+index d2644ff..0000000
+Binary files a/tests/__pycache__/test_console.cpython-310.pyc and /dev/null differ
+diff --git a/tests/test_console.py b/tests/test_console.py
+index 2657204..015e5c4 100755
+--- a/tests/test_console.py
++++ b/tests/test_console.py
+@@ -5,7 +5,7 @@ Contains the class TestConsoleDocs
+ 
+ import console
+ import inspect
+-import pycodestyle as pep8
++import pep8
+ import unittest
+ HBNBCommand = console.HBNBCommand
+ 
+diff --git a/tests/test_models/__pycache__/__init__.cpython-310.pyc b/tests/test_models/__pycache__/__init__.cpython-310.pyc
+deleted file mode 100644
+index 397299f..0000000
+Binary files a/tests/test_models/__pycache__/__init__.cpython-310.pyc and /dev/null differ
+diff --git a/tests/test_models/__pycache__/test_amenity.cpython-310.pyc b/tests/test_models/__pycache__/test_amenity.cpython-310.pyc
+deleted file mode 100644
+index 0685083..0000000
+Binary files a/tests/test_models/__pycache__/test_amenity.cpython-310.pyc and /dev/null differ
+diff --git a/tests/test_models/__pycache__/test_base_model.cpython-310.pyc b/tests/test_models/__pycache__/test_base_model.cpython-310.pyc
+deleted file mode 100644
+index 68d04d3..0000000
+Binary files a/tests/test_models/__pycache__/test_base_model.cpython-310.pyc and /dev/null differ
+diff --git a/tests/test_models/__pycache__/test_city.cpython-310.pyc b/tests/test_models/__pycache__/test_city.cpython-310.pyc
+deleted file mode 100644
+index 0c1b55b..0000000
+Binary files a/tests/test_models/__pycache__/test_city.cpython-310.pyc and /dev/null differ
+diff --git a/tests/test_models/__pycache__/test_place.cpython-310.pyc b/tests/test_models/__pycache__/test_place.cpython-310.pyc
+deleted file mode 100644
+index 61fcb29..0000000
+Binary files a/tests/test_models/__pycache__/test_place.cpython-310.pyc and /dev/null differ
+diff --git a/tests/test_models/__pycache__/test_review.cpython-310.pyc b/tests/test_models/__pycache__/test_review.cpython-310.pyc
+deleted file mode 100644
+index 572f5ea..0000000
+Binary files a/tests/test_models/__pycache__/test_review.cpython-310.pyc and /dev/null differ
+diff --git a/tests/test_models/__pycache__/test_state.cpython-310.pyc b/tests/test_models/__pycache__/test_state.cpython-310.pyc
+deleted file mode 100644
+index bdea48b..0000000
+Binary files a/tests/test_models/__pycache__/test_state.cpython-310.pyc and /dev/null differ
+diff --git a/tests/test_models/__pycache__/test_user.cpython-310.pyc b/tests/test_models/__pycache__/test_user.cpython-310.pyc
+deleted file mode 100644
+index 8402661..0000000
+Binary files a/tests/test_models/__pycache__/test_user.cpython-310.pyc and /dev/null differ
+diff --git a/tests/test_models/test_amenity.py b/tests/test_models/test_amenity.py
+index ffb57e9..66b0bb6 100755
+--- a/tests/test_models/test_amenity.py
++++ b/tests/test_models/test_amenity.py
+@@ -7,18 +7,14 @@ from datetime import datetime
+ import inspect
+ import models
+ from models import amenity
+-from models.amenity import Amenity
+ from models.base_model import BaseModel
+-import pycodestyle as pep8
++import pep8
+ import unittest
+-from api.v1.app import app
+-from models import storage
+-from flask import Flask
++Amenity = amenity.Amenity
+ 
+ 
+ class TestAmenityDocs(unittest.TestCase):
+     """Tests to check the documentation and style of Amenity class"""
+-
+     @classmethod
+     def setUpClass(cls):
+         """Set up for the doc tests"""
+@@ -26,15 +22,15 @@ class TestAmenityDocs(unittest.TestCase):
+ 
+     def test_pep8_conformance_amenity(self):
+         """Test that models/amenity.py conforms to PEP8."""
+-        pep8style = pep8.StyleGuide(quiet=True)
+-        result = pep8style.check_files(['models/amenity.py'])
++        pep8s = pep8.StyleGuide(quiet=True)
++        result = pep8s.check_files(['models/amenity.py'])
+         self.assertEqual(result.total_errors, 0,
+                          "Found code style errors (and warnings).")
+ 
+     def test_pep8_conformance_test_amenity(self):
+         """Test that tests/test_models/test_amenity.py conforms to PEP8."""
+-        pep8style = pep8.StyleGuide(quiet=True)
+-        result = pep8style.check_files(['tests/test_models/test_amenity.py'])
++        pep8s = pep8.StyleGuide(quiet=True)
++        result = pep8s.check_files(['tests/test_models/test_amenity.py'])
+         self.assertEqual(result.total_errors, 0,
+                          "Found code style errors (and warnings).")
+ 
+@@ -63,7 +59,6 @@ class TestAmenityDocs(unittest.TestCase):
+ 
+ class TestAmenity(unittest.TestCase):
+     """Test the Amenity class"""
+-
+     def test_is_subclass(self):
+         """Test that Amenity is a subclass of BaseModel"""
+         amenity = Amenity()
+@@ -73,7 +68,7 @@ class TestAmenity(unittest.TestCase):
+         self.assertTrue(hasattr(amenity, "updated_at"))
+ 
+     def test_name_attr(self):
+-        """Test that Amenity has attribute name, and it's an empty string"""
++        """Test that Amenity has attribute name, and it's as an empty string"""
+         amenity = Amenity()
+         self.assertTrue(hasattr(amenity, "name"))
+         if models.storage_t == 'db':
+@@ -82,18 +77,19 @@ class TestAmenity(unittest.TestCase):
+             self.assertEqual(amenity.name, "")
+ 
+     def test_to_dict_creates_dict(self):
+-        """Test to_dict method creates a dictionary with proper attrs"""
++        """test to_dict method creates a dictionary with proper attrs"""
+         am = Amenity()
++        print(am.__dict__)
+         new_d = am.to_dict()
+         self.assertEqual(type(new_d), dict)
+         self.assertFalse("_sa_instance_state" in new_d)
+         for attr in am.__dict__:
+-            if attr != "_sa_instance_state":
++            if attr is not "_sa_instance_state":
+                 self.assertTrue(attr in new_d)
+         self.assertTrue("__class__" in new_d)
+ 
+     def test_to_dict_values(self):
+-        """Test that values in dict returned from to_dict are correct"""
++        """test that values in dict returned from to_dict are correct"""
+         t_format = "%Y-%m-%dT%H:%M:%S.%f"
+         am = Amenity()
+         new_d = am.to_dict()
+@@ -104,131 +100,7 @@ class TestAmenity(unittest.TestCase):
+         self.assertEqual(new_d["updated_at"], am.updated_at.strftime(t_format))
+ 
+     def test_str(self):
+-        """Test that the str method has the correct output"""
++        """test that the str method has the correct output"""
+         amenity = Amenity()
+         string = "[Amenity] ({}) {}".format(amenity.id, amenity.__dict__)
+         self.assertEqual(string, str(amenity))
+-
+-
+-class TestAmenityAPI(unittest.TestCase):
+-    """Test API endpoints related to Amenity."""
+-
+-    @classmethod
+-    def setUpClass(cls):
+-        """Set up Flask test client and resources for testing."""
+-        app.testing = True
+-        cls.client = app.test_client()
+-
+-    def setUp(self):
+-        """Initialize test context and create a test amenity object."""
+-        self.ctx = app.app_context()
+-        self.ctx.push()
+-        storage.reload()
+-
+-        # Create a test amenity
+-        self.amenity = Amenity(name="Test Amenity")
+-        storage.new(self.amenity)
+-        storage.save()
+-
+-    def tearDown(self):
+-        """Remove test context and delete the test amenity object."""
+-        storage.delete(self.amenity)
+-        storage.save()
+-        self.ctx.pop()
+-
+-    def test_get_amenities(self):
+-        """Test GET /api/v1/amenities returns all amenities."""
+-        response = self.client.get('/api/v1/amenities')
+-        self.assertEqual(response.status_code, 200)
+-        self.assertIsInstance(response.json, list)
+-        self.assertGreaterEqual(len(response.json), 1)
+-
+-    def test_get_amenity(self):
+-        """Test GET /api/v1/amenities/<amenity_id> for a specific amenity."""
+-        response = self.client.get(f'/api/v1/amenities/{self.amenity.id}')
+-        self.assertEqual(response.status_code, 200)
+-        self.assertEqual(response.json['name'], "Test Amenity")
+-
+-    def test_get_amenity_not_found(self):
+-        """Test GET /api/v1/amenities/<amenity_id> with a non-existent ID."""
+-        response = self.client.get('/api/v1/amenities/invalid_id')
+-        self.assertEqual(response.status_code, 404)
+-
+-    def test_delete_amenity(self):
+-        """Test DELETE /api/v1/amenities/<amenity_id> to delete an amenity."""
+-        response = self.client.delete(f'/api/v1/amenities/{self.amenity.id}')
+-        self.assertEqual(response.status_code, 200)
+-        self.assertEqual(response.json, {})
+-
+-    def test_delete_amenity_not_found(self):
+-        """Test DELETE /api/v1/amenities/<amenity_id> with a non-existent ID"""
+-        response = self.client.delete('/api/v1/amenities/invalid_id')
+-        self.assertEqual(response.status_code, 404)
+-
+-    def test_create_amenity(self):
+-        """Test POST /api/v1/amenities to create a new amenity."""
+-        headers = {"Content-Type": "application/json"}
+-        data = {"name": "New Amenity"}
+-        response = self.client.post(
+-            '/api/v1/amenities', json=data, headers=headers
+-        )
+-        self.assertEqual(response.status_code, 201)
+-        self.assertEqual(response.json['name'], "New Amenity")
+-
+-        # Clean up
+-        new_amenity = storage.get(Amenity, response.json['id'])
+-        storage.delete(new_amenity)
+-        storage.save()
+-
+-    def test_create_amenity_missing_name(self):
+-        """Test POST /api/v1/amenities with missing 'name' field."""
+-        headers = {"Content-Type": "application/json"}
+-        response = self.client.post(
+-            '/api/v1/amenities', json={}, headers=headers
+-        )
+-        self.assertEqual(response.status_code, 400)
+-        error_message = response.get_json(silent=True) or {}
+-        self.assertIn("Missing name", error_message.get("error", ""))
+-
+-    def test_create_amenity_invalid_json(self):
+-        """Test POST /api/v1/amenities with invalid JSON."""
+-        headers = {"Content-Type": "application/json"}
+-        response = self.client.post(
+-            '/api/v1/amenities', data="invalid_json", headers=headers
+-        )
+-        self.assertEqual(response.status_code, 400)
+-        error_message = response.get_json(silent=True) or {}
+-        self.assertIn("Not a JSON", error_message.get("error", ""))
+-
+-    def test_update_amenity(self):
+-        """Test PUT /api/v1/amenities/<amenity_id> to update an amenity."""
+-        headers = {"Content-Type": "application/json"}
+-        data = {"name": "Updated Amenity"}
+-        response = self.client.put(
+-            f'/api/v1/amenities/{self.amenity.id}', json=data, headers=headers
+-        )
+-        self.assertEqual(response.status_code, 200)
+-        self.assertEqual(response.json['name'], "Updated Amenity")
+-
+-    def test_update_amenity_not_found(self):
+-        """Test PUT /api/v1/amenities/<amenity_id> with a non-existent ID."""
+-        headers = {"Content-Type": "application/json"}
+-        data = {"name": "Updated Amenity"}
+-        response = self.client.put(
+-            '/api/v1/amenities/invalid_id', json=data, headers=headers
+-        )
+-        self.assertEqual(response.status_code, 404)
+-
+-    def test_update_amenity_invalid_json(self):
+-        """Test PUT /api/v1/amenities/<amenity_id> with invalid JSON."""
+-        headers = {"Content-Type": "application/json"}
+-        response = self.client.put(
+-           f'amenities/{self.amenity.id}', data="invalid_json", headers=headers
+-        )
+-        self.assertEqual(response.status_code, 400)
+-        error_message = response.get_json(silent=True) or {}
+-        self.assertIn("Not a JSON", error_message.get("error", ""))
+-
+-
+-if __name__ == '__main__':
+-    unittest.main()
+diff --git a/tests/test_models/test_base_model.py b/tests/test_models/test_base_model.py
+index fcfb521..f88fb51 100644
+--- a/tests/test_models/test_base_model.py
++++ b/tests/test_models/test_base_model.py
+@@ -1,9 +1,9 @@
+ #!/usr/bin/python3
+ """Test BaseModel for expected behavior and documentation"""
+-from datetime import datetime
++from datetime import datetime, timezone
+ import inspect
+ import models
+-import pycodestyle as pep8
++import pep8 as pycodestyle
+ import time
+ import unittest
+ from unittest import mock
+@@ -24,7 +24,7 @@ class TestBaseModelDocs(unittest.TestCase):
+         for path in ['models/base_model.py',
+                      'tests/test_models/test_base_model.py']:
+             with self.subTest(path=path):
+-                errors = pep8.Checker(path).check_all()
++                errors = pycodestyle.Checker(path).check_all()
+                 self.assertEqual(errors, 0)
+ 
+     def test_module_docstring(self):
+@@ -82,15 +82,18 @@ class TestBaseModel(unittest.TestCase):
+         """Test that two BaseModel instances have different datetime objects
+         and that upon creation have identical updated_at and created_at
+         value."""
+-        tic = datetime.now()
++        tic = datetime.now(timezone.utc)
+         inst1 = BaseModel()
+-        toc = datetime.now()
++        toc = datetime.now(timezone.utc)
+         self.assertTrue(tic <= inst1.created_at <= toc)
++
+         time.sleep(1e-4)
+-        tic = datetime.now()
++
++        tic = datetime.now(timezone.utc)
+         inst2 = BaseModel()
+-        toc = datetime.now()
++        toc = datetime.now(timezone.utc)
+         self.assertTrue(tic <= inst2.created_at <= toc)
++
+         self.assertEqual(inst1.created_at, inst1.updated_at)
+         self.assertEqual(inst2.created_at, inst2.updated_at)
+         self.assertNotEqual(inst1.created_at, inst2.created_at)
+diff --git a/tests/test_models/test_city.py b/tests/test_models/test_city.py
+index 4a58fcf..1ed6661 100755
+--- a/tests/test_models/test_city.py
++++ b/tests/test_models/test_city.py
+@@ -1,21 +1,20 @@
+ #!/usr/bin/python3
+ """
+-Contains the TestCityDocs and TestCityAPI classes
++Contains the TestCityDocs classes
+ """
+ 
+ from datetime import datetime
+ import inspect
+-from api.v1.app import app
+-from models.state import State
+-from models.city import City
+-from models import storage
+-import pycodestyle as pep8
++import models
++from models import city
++from models.base_model import BaseModel
++import pep8
+ import unittest
++City = city.City
+ 
+ 
+ class TestCityDocs(unittest.TestCase):
+     """Tests to check the documentation and style of City class"""
+-
+     @classmethod
+     def setUpClass(cls):
+         """Set up for the doc tests"""
+@@ -23,23 +22,23 @@ class TestCityDocs(unittest.TestCase):
+ 
+     def test_pep8_conformance_city(self):
+         """Test that models/city.py conforms to PEP8."""
+-        pep8style = pep8.StyleGuide(quiet=True)
+-        result = pep8style.check_files(['models/city.py'])
++        pep8s = pep8.StyleGuide(quiet=True)
++        result = pep8s.check_files(['models/city.py'])
+         self.assertEqual(result.total_errors, 0,
+                          "Found code style errors (and warnings).")
+ 
+     def test_pep8_conformance_test_city(self):
+         """Test that tests/test_models/test_city.py conforms to PEP8."""
+-        pep8style = pep8.StyleGuide(quiet=True)
+-        result = pep8style.check_files(['tests/test_models/test_city.py'])
++        pep8s = pep8.StyleGuide(quiet=True)
++        result = pep8s.check_files(['tests/test_models/test_city.py'])
+         self.assertEqual(result.total_errors, 0,
+                          "Found code style errors (and warnings).")
+ 
+     def test_city_module_docstring(self):
+         """Test for the city.py module docstring"""
+-        self.assertIsNot(City.__doc__, None,
++        self.assertIsNot(city.__doc__, None,
+                          "city.py needs a docstring")
+-        self.assertTrue(len(City.__doc__) >= 1,
++        self.assertTrue(len(city.__doc__) >= 1,
+                         "city.py needs a docstring")
+ 
+     def test_city_class_docstring(self):
+@@ -49,130 +48,67 @@ class TestCityDocs(unittest.TestCase):
+         self.assertTrue(len(City.__doc__) >= 1,
+                         "City class needs a docstring")
+ 
+-
+-class TestCityAPI(unittest.TestCase):
+-    """Test API endpoints related to City"""
+-
+-    @classmethod
+-    def setUpClass(cls):
+-        """Set up Flask test client and resources for testing"""
+-        app.testing = True
+-        cls.client = app.test_client()
+-
+-    def setUp(self):
+-        """Set up test context and initialize data for each test"""
+-        self.ctx = app.app_context()
+-        self.ctx.push()
+-        storage.reload()
+-        self.state = State(name="TestState")
+-        storage.new(self.state)
+-        storage.save()
+-
+-    def tearDown(self):
+-        """Tear down test context and remove created data"""
+-        storage.delete(self.state)
+-        storage.save()
+-        self.ctx.pop()
+-
+-    def test_get_cities_by_state(self):
+-        """Test GET /api/v1/states/<state_id>/cities"""
+-        response = self.client.get(f"/api/v1/states/{self.state.id}/cities")
+-        self.assertEqual(response.status_code, 200)
+-        self.assertIsInstance(response.json, list)
+-        self.assertEqual(len(response.json), 0)
+-
+-    def test_get_city(self):
+-        """Test GET /api/v1/cities/<city_id>"""
+-        city = City(name="TestCity", state_id=self.state.id)
+-        storage.new(city)
+-        storage.save()
+-
+-        response = self.client.get(f"/api/v1/cities/{city.id}")
+-        self.assertEqual(response.status_code, 200)
+-        self.assertEqual(response.json["name"], "TestCity")
+-
+-        # Clean up
+-        storage.delete(city)
+-        storage.save()
+-
+-    def test_delete_city(self):
+-        """Test DELETE /api/v1/cities/<city_id>"""
+-        city = City(name="TestCityToDelete", state_id=self.state.id)
+-        storage.new(city)
+-        storage.save()
+-
+-        response = self.client.delete(f"/api/v1/cities/{city.id}")
+-        self.assertEqual(response.status_code, 200)
+-        self.assertEqual(response.json, {})
+-
+-        # Ensure city was deleted
+-        response = self.client.get(f"/api/v1/cities/{city.id}")
+-        self.assertEqual(response.status_code, 404)
+-
+-    def test_create_city(self):
+-        """Test POST /api/v1/states/<state_id>/cities"""
+-        headers = {"Content-Type": "application/json"}
+-        data = {"name": "NewCity"}
+-
+-        response = self.client.post(
+-            f"/api/v1/states/{self.state.id}/cities",
+-            json=data,
+-            headers=headers
+-        )
+-        self.assertEqual(response.status_code, 201)
+-        self.assertEqual(response.json["name"], "NewCity")
+-        self.assertEqual(response.json["state_id"], self.state.id)
+-
+-    def test_create_city_missing_name(self):
+-        """Test POST /api/v1/states/<state_id>/cities with missing 'name'"""
+-        headers = {"Content-Type": "application/json"}
+-        response = self.client.post(
+-            f'/api/v1/states/{self.state.id}/cities', json={}, headers=headers)
+-        self.assertEqual(response.status_code, 400)
+-        error_message = response.get_json(silent=True) or {}
+-        self.assertIn("Missing name", error_message.get("error", ""))
+-
+-    def test_update_city(self):
+-        """Test PUT /api/v1/cities/<city_id>"""
+-        city = City(name="OldCity", state_id=self.state.id)
+-        storage.new(city)
+-        storage.save()
+-
+-        headers = {"Content-Type": "application/json"}
+-        data = {"name": "UpdatedCity"}
+-
+-        response = self.client.put(
+-            f"/api/v1/cities/{city.id}",
+-            json=data,
+-            headers=headers
+-        )
+-        self.assertEqual(response.status_code, 200)
+-        self.assertEqual(response.json["name"], "UpdatedCity")
+-
+-        # Clean up
+-        storage.delete(city)
+-        storage.save()
+-
+-    def test_update_city_invalid_json(self):
+-        """Test PUT /api/v1/cities/<city_id> with invalid JSON"""
+-        city = City(name="CityWithBadData", state_id=self.state.id)
+-        storage.new(city)
+-        storage.save()
+-
+-        headers = {"Content-Type": "application/json"}
+-        response = self.client.put(
+-            f"/api/v1/cities/{city.id}",
+-            data="Invalid JSON",
+-            headers=headers
+-        )
+-        self.assertEqual(response.status_code, 400)
+-        error_message = response.get_json(silent=True) or {}
+-        self.assertIn("Not a JSON", error_message.get("error", ""))
+-
+-        # Clean up
+-        storage.delete(city)
+-        storage.save()
+-
+-
+-if __name__ == '__main__':
+-    unittest.main()
++    def test_city_func_docstrings(self):
++        """Test for the presence of docstrings in City methods"""
++        for func in self.city_f:
++            self.assertIsNot(func[1].__doc__, None,
++                             "{:s} method needs a docstring".format(func[0]))
++            self.assertTrue(len(func[1].__doc__) >= 1,
++                            "{:s} method needs a docstring".format(func[0]))
++
++
++class TestCity(unittest.TestCase):
++    """Test the City class"""
++    def test_is_subclass(self):
++        """Test that City is a subclass of BaseModel"""
++        city = City()
++        self.assertIsInstance(city, BaseModel)
++        self.assertTrue(hasattr(city, "id"))
++        self.assertTrue(hasattr(city, "created_at"))
++        self.assertTrue(hasattr(city, "updated_at"))
++
++    def test_name_attr(self):
++        """Test that City has attribute name, and it's an empty string"""
++        city = City()
++        self.assertTrue(hasattr(city, "name"))
++        if models.storage_t == 'db':
++            self.assertEqual(city.name, None)
++        else:
++            self.assertEqual(city.name, "")
++
++    def test_state_id_attr(self):
++        """Test that City has attribute state_id, and it's an empty string"""
++        city = City()
++        self.assertTrue(hasattr(city, "state_id"))
++        if models.storage_t == 'db':
++            self.assertEqual(city.state_id, None)
++        else:
++            self.assertEqual(city.state_id, "")
++
++    def test_to_dict_creates_dict(self):
++        """test to_dict method creates a dictionary with proper attrs"""
++        c = City()
++        new_d = c.to_dict()
++        self.assertEqual(type(new_d), dict)
++        self.assertFalse("_sa_instance_state" in new_d)
++        for attr in c.__dict__:
++            if attr is not "_sa_instance_state":
++                self.assertTrue(attr in new_d)
++        self.assertTrue("__class__" in new_d)
++
++    def test_to_dict_values(self):
++        """test that values in dict returned from to_dict are correct"""
++        t_format = "%Y-%m-%dT%H:%M:%S.%f"
++        c = City()
++        new_d = c.to_dict()
++        self.assertEqual(new_d["__class__"], "City")
++        self.assertEqual(type(new_d["created_at"]), str)
++        self.assertEqual(type(new_d["updated_at"]), str)
++        self.assertEqual(new_d["created_at"], c.created_at.strftime(t_format))
++        self.assertEqual(new_d["updated_at"], c.updated_at.strftime(t_format))
++
++    def test_str(self):
++        """test that the str method has the correct output"""
++        city = City()
++        string = "[City] ({}) {}".format(city.id, city.__dict__)
++        self.assertEqual(string, str(city))
+diff --git a/tests/test_models/test_engine/__pycache__/__init__.cpython-310.pyc b/tests/test_models/test_engine/__pycache__/__init__.cpython-310.pyc
+deleted file mode 100644
+index 4c2d492..0000000
+Binary files a/tests/test_models/test_engine/__pycache__/__init__.cpython-310.pyc and /dev/null differ
+diff --git a/tests/test_models/test_engine/__pycache__/test_db_storage.cpython-310.pyc b/tests/test_models/test_engine/__pycache__/test_db_storage.cpython-310.pyc
+deleted file mode 100644
+index 5a5dd5b..0000000
+Binary files a/tests/test_models/test_engine/__pycache__/test_db_storage.cpython-310.pyc and /dev/null differ
+diff --git a/tests/test_models/test_engine/__pycache__/test_file_storage.cpython-310.pyc b/tests/test_models/test_engine/__pycache__/test_file_storage.cpython-310.pyc
+deleted file mode 100644
+index 0f2fe37..0000000
+Binary files a/tests/test_models/test_engine/__pycache__/test_file_storage.cpython-310.pyc and /dev/null differ
+diff --git a/tests/test_models/test_engine/test_db_storage.py b/tests/test_models/test_engine/test_db_storage.py
+index 8a19d10..31ece9c 100755
+--- a/tests/test_models/test_engine/test_db_storage.py
++++ b/tests/test_models/test_engine/test_db_storage.py
+@@ -2,9 +2,9 @@
+ """
+ Contains the TestDBStorageDocs and TestDBStorage classes
+ """
+-
+ from datetime import datetime
+ import inspect
++from unittest.mock import Base
+ import models
+ from models.engine import db_storage
+ from models.amenity import Amenity
+@@ -14,10 +14,10 @@ from models.place import Place
+ from models.review import Review
+ from models.state import State
+ from models.user import User
+-import pycodestyle as pep8
++import json
++import os
++import pep8
+ import unittest
+-
+-
+ DBStorage = db_storage.DBStorage
+ classes = {"Amenity": Amenity, "City": City, "Place": Place,
+            "Review": Review, "State": State, "User": User}
+@@ -27,8 +27,16 @@ class TestDBStorageDocs(unittest.TestCase):
+     """Tests to check the documentation and style of DBStorage class"""
+     @classmethod
+     def setUpClass(cls):
+-        """Set up for the doc tests"""
+-        cls.dbs_f = inspect.getmembers(DBStorage, inspect.isfunction)
++        """Set up for the test class"""
++        os.environ['HBNB_MYSQL_USER'] = 'hbnb_test'
++        os.environ['HBNB_MYSQL_PWD'] = 'hbnb_test_pwd'
++        os.environ['HBNB_MYSQL_HOST'] = 'localhost'
++        os.environ['HBNB_MYSQL_DB'] = 'hbnb_test_db'
++        os.environ['HBNB_ENV'] = 'test'
++
++        cls.storage = DBStorage()
++        cls.storage.reload()
++        Base.metadata.create_all(cls.storage.__engine)
+ 
+     def test_pep8_conformance_db_storage(self):
+         """Test that models/engine/db_storage.py conforms to PEP8."""
+@@ -40,7 +48,8 @@ class TestDBStorageDocs(unittest.TestCase):
+     def test_pep8_conformance_test_db_storage(self):
+         """Test tests/test_models/test_db_storage.py conforms to PEP8."""
+         pep8s = pep8.StyleGuide(quiet=True)
+-        result = pep8s.check_files(['test_engine/test_db_storage.py'])
++        result = pep8s.check_files(['tests/test_models/test_engine/\
++test_db_storage.py'])
+         self.assertEqual(result.total_errors, 0,
+                          "Found code style errors (and warnings).")
+ 
+@@ -67,78 +76,46 @@ class TestDBStorageDocs(unittest.TestCase):
+                             "{:s} method needs a docstring".format(func[0]))
+ 
+ 
+-class TestDBStorage(unittest.TestCase):
+-    """Test the DBStorage class"""
+-
++class TestFileStorage(unittest.TestCase):
++    """Test the FileStorage class"""
+     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+     def test_all_returns_dict(self):
+-        """Test that all returns a dictionary"""
++        """Test that all returns a dictionaty"""
+         self.assertIs(type(models.storage.all()), dict)
+ 
+     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+-    def test_all_no_class(self):
+-        """Test that all returns all rows when no class is passed"""
+-        all_objs = models.storage.all()
+-        self.assertGreaterEqual(len(all_objs), 0)
++    def test_returns_obj(self):
++        """Test that get returns an existing object """
++        state = State(name="California")
++        state.save()
++        first_state_obj = list(models.storage.all("State").values())[0]
++        state_obj = models.storage.get("State", first_state_obj.id)
++        self.assertIs(first_state_obj, state_obj)
+ 
+     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+-    def test_new(self):
+-        """Test that new adds an object to the database"""
+-        initial_count = models.storage.count(State)
+-        state = State(name="Test State")
+-        models.storage.new(state)
+-        models.storage.save()
+-        self.assertEqual(models.storage.count(State), initial_count + 1)
++    def test_returns_none(self):
++        """Test that get returns None for nonexisting object """
++        state_obj = models.storage.get("State", "IDONTEXIST")
++        self.assertIsNone(state_obj)
+ 
+     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+-    def test_save(self):
+-        """Test that save properly saves objects to the database"""
+-        state = State(name="Another Test State")
+-        models.storage.new(state)
+-        models.storage.save()
+-        saved_state = models.storage.get(State, state.id)
+-        self.assertIsNotNone(saved_state)
+-        self.assertEqual(saved_state.name, "Another Test State")
++    def test_all_no_class(self):
++        """Test that all returns all rows when no class is passed"""
+ 
+     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+-    def test_get(self):
+-        """Test that get retrieves the correct object based on class and id"""
+-        state = State(name="Unique Test State")
+-        models.storage.new(state)
+-        models.storage.save()
+-        retrieved_state = models.storage.get(State, state.id)
+-        self.assertEqual(retrieved_state, state)
+-        self.assertEqual(retrieved_state.name, "Unique Test State")
++    def test_new(self):
++        """test that new adds an object to the database"""
+ 
+     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+-    def test_get_nonexistent(self):
+-        """Test that get returns None when an object is not found"""
+-        self.assertIsNone(models.storage.get(State, "nonexistent_id"))
++    def test_save(self):
++        """Test that save properly saves objects to file.json"""
+ 
+     @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+     def test_count(self):
+-        """Test that count returns the correct count of objects in storage"""
+-        initial_count = models.storage.count()
+-        new_state = State(name="Count Test State")
+-        models.storage.new(new_state)
+-        models.storage.save()
+-        self.assertEqual(models.storage.count(), initial_count + 1)
+-        models.storage.delete(new_state)
+-        models.storage.save()
+-        self.assertEqual(models.storage.count(), initial_count)
+-
+-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+-    def test_count_specific_class(self):
+-        """Test that count returns the correct count for a specific class"""
+-        initial_state_count = models.storage.count(State)
+-        state = State(name="State Count Test")
+-        models.storage.new(state)
+-        models.storage.save()
+-        self.assertEqual(models.storage.count(State), initial_state_count + 1)
+-        models.storage.delete(state)
+-        models.storage.save()
+-        self.assertEqual(models.storage.count(State), initial_state_count)
+-
+-
+-if __name__ == "__main__":
+-    unittest.main()
++        """Test that count is properly return """
++        objs = models.storage.all()
++        self.assertEqual(len(objs), models.storage.count())
++        state_objs = models.storage.all("State")
++        self.assertEqual(len(state_objs), models.storage.count("State"))
++        no_objs = models.storage.all("Any")
++        self.assertEqual(len(no_objs), models.storage.count("Any"))
+diff --git a/tests/test_models/test_engine/test_file_storage.py b/tests/test_models/test_engine/test_file_storage.py
+index 071f963..a0811ad 100755
+--- a/tests/test_models/test_engine/test_file_storage.py
++++ b/tests/test_models/test_engine/test_file_storage.py
+@@ -1,6 +1,6 @@
+ #!/usr/bin/python3
+ """
+-Contains the TestFileStorageDocs and TestFileStorage classes
++Contains the TestFileStorageDocs classes
+ """
+ 
+ from datetime import datetime
+@@ -16,10 +16,8 @@ from models.state import State
+ from models.user import User
+ import json
+ import os
+-import pycodestyle as pep8
++import pep8
+ import unittest
+-
+-
+ FileStorage = file_storage.FileStorage
+ classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
+            "Place": Place, "Review": Review, "State": State, "User": User}
+@@ -40,9 +38,10 @@ class TestFileStorageDocs(unittest.TestCase):
+                          "Found code style errors (and warnings).")
+ 
+     def test_pep8_conformance_test_file_storage(self):
+-        """Test test_file_storage.py conforms to PEP8."""
++        """Test tests/test_models/test_file_storage.py conforms to PEP8."""
+         pep8s = pep8.StyleGuide(quiet=True)
+-        result = pep8s.check_files(['/test_engine/test_file_storage.py'])
++        result = pep8s.check_files(['tests/test_models/test_engine/\
++test_file_storage.py'])
+         self.assertEqual(result.total_errors, 0,
+                          "Found code style errors (and warnings).")
+ 
+@@ -71,7 +70,6 @@ class TestFileStorageDocs(unittest.TestCase):
+ 
+ class TestFileStorage(unittest.TestCase):
+     """Test the FileStorage class"""
+-
+     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+     def test_all_returns_dict(self):
+         """Test that all returns the FileStorage.__objects attr"""
+@@ -82,7 +80,7 @@ class TestFileStorage(unittest.TestCase):
+ 
+     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+     def test_new(self):
+-        """Test that new adds an object to the FileStorage.__objects attr"""
++        """test that new adds an object to the FileStorage.__objects attr"""
+         storage = FileStorage()
+         save = FileStorage._FileStorage__objects
+         FileStorage._FileStorage__objects = {}
+@@ -118,48 +116,42 @@ class TestFileStorage(unittest.TestCase):
+ 
+     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+     def test_get(self):
+-        """Test that get retrieves the correct object by class and ID"""
+-        storage = FileStorage()
+-        state = State(name="Test State")
+-        storage.new(state)
+-        storage.save()
+-        retrieved_state = storage.get(State, state.id)
+-        self.assertEqual(retrieved_state, state)
+-        storage.delete(state)
+-        storage.save()
+-
+-    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+-    def test_get_nonexistent(self):
+-        """Test that get returns None for non-existent ID"""
++        """Test that get properly retrieves one object,based on class and ID"""
+         storage = FileStorage()
+-        self.assertIsNone(storage.get(State, "nonexistent_id"))
++        storage.reload()
++        for key, value in classes.items():
++            instance = value()
++            storage.new(instance)
++            storage.save()
++            test_obj = storage.get(value, instance.id)
++            self.assertIsNotNone(test_obj)
++            self.assertEqual(instance.id, test_obj.id)
++            self.assertEqual(instance.__class__, test_obj.__class__)
++            self.assertEqual(instance.to_dict(), test_obj.to_dict())
+ 
+     @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+     def test_count(self):
+-        """Test that count returns the correct number of objects in storage"""
++        """Test that count properly counts the number of objects in storage"""
+         storage = FileStorage()
+-        initial_count = storage.count()
+-        state = State(name="Count Test State")
+-        storage.new(state)
++        storage._FileStorage__objects = {}
+         storage.save()
+-        self.assertEqual(storage.count(), initial_count + 1)
+-        storage.delete(state)
+-        storage.save()
+-        self.assertEqual(storage.count(), initial_count)
+-
+-    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+-    def test_count_specific_class(self):
+-        """Test that count returns the correct number for a specific class"""
+-        storage = FileStorage()
+-        initial_count = storage.count(State)
+-        state = State(name="State Count Test")
+-        storage.new(state)
+-        storage.save()
+-        self.assertEqual(storage.count(State), initial_count + 1)
+-        storage.delete(state)
+-        storage.save()
+-        self.assertEqual(storage.count(State), initial_count)
+-
+-
+-if __name__ == "__main__":
+-    unittest.main()
++        count = 0
++        for value in classes.values():
++            instance = value()
++            storage.new(instance)
++            storage.save()
++            count += 1
++
++        print(f"Expected total count: {count}")
++        print(f"Actual total count: {storage.count()}")
++
++        for cls in classes.values():
++            print(f"Count for {cls.__name__}: {storage.count(cls)}")
++
++        self.assertEqual(count, storage.count())
++        self.assertEqual(storage.count(State), 1)
++        self.assertEqual(storage.count(City), 1)
++        self.assertEqual(storage.count(Amenity), 1)
++        self.assertEqual(storage.count(Place), 1)
++        self.assertEqual(storage.count(Review), 1)
++        self.assertEqual(storage.count(BaseModel), 1)
+diff --git a/tests/test_models/test_place.py b/tests/test_models/test_place.py
+index 066b2b0..233e774 100755
+--- a/tests/test_models/test_place.py
++++ b/tests/test_models/test_place.py
+@@ -8,7 +8,7 @@ import inspect
+ import models
+ from models import place
+ from models.base_model import BaseModel
+-import pycodestyle as pep8
++import pep8
+ import unittest
+ Place = place.Place
+ 
+diff --git a/tests/test_models/test_review.py b/tests/test_models/test_review.py
+index b6d2511..171b725 100755
+--- a/tests/test_models/test_review.py
++++ b/tests/test_models/test_review.py
+@@ -8,7 +8,7 @@ import inspect
+ import models
+ from models import review
+ from models.base_model import BaseModel
+-import pycodestyle as pep8
++import pep8
+ import unittest
+ Review = review.Review
+ 
+diff --git a/tests/test_models/test_state.py b/tests/test_models/test_state.py
+index 60fe155..2ac2391 100755
+--- a/tests/test_models/test_state.py
++++ b/tests/test_models/test_state.py
+@@ -1,20 +1,20 @@
+ #!/usr/bin/python3
+ """
+-Contains the TestStateDocs, TestState classes, and API tests.
++Contains the TestStateDocs classes
+ """
+ 
+-import unittest
++from datetime import datetime
+ import inspect
+-import pycodestyle as pep8
+-from api.v1.app import app
+-from models import storage
++import models
+ from models import state
+-from models.state import State
++from models.base_model import BaseModel
++import pep8
++import unittest
++State = state.State
+ 
+ 
+ class TestStateDocs(unittest.TestCase):
+     """Tests to check the documentation and style of State class"""
+-
+     @classmethod
+     def setUpClass(cls):
+         """Set up for the doc tests"""
+@@ -22,15 +22,15 @@ class TestStateDocs(unittest.TestCase):
+ 
+     def test_pep8_conformance_state(self):
+         """Test that models/state.py conforms to PEP8."""
+-        pep8style = pep8.StyleGuide(quiet=True)
+-        result = pep8style.check_files(['models/state.py'])
++        pep8s = pep8.StyleGuide(quiet=True)
++        result = pep8s.check_files(['models/state.py'])
+         self.assertEqual(result.total_errors, 0,
+                          "Found code style errors (and warnings).")
+ 
+     def test_pep8_conformance_test_state(self):
+         """Test that tests/test_models/test_state.py conforms to PEP8."""
+-        pep8style = pep8.StyleGuide(quiet=True)
+-        result = pep8style.check_files(['tests/test_models/test_state.py'])
++        pep8s = pep8.StyleGuide(quiet=True)
++        result = pep8s.check_files(['tests/test_models/test_state.py'])
+         self.assertEqual(result.total_errors, 0,
+                          "Found code style errors (and warnings).")
+ 
+@@ -57,66 +57,49 @@ class TestStateDocs(unittest.TestCase):
+                             "{:s} method needs a docstring".format(func[0]))
+ 
+ 
+-class TestStateAPI(unittest.TestCase):
+-    """Test the State API endpoints"""
+-
+-    @classmethod
+-    def setUpClass(cls):
+-        """Set up Flask test client for State API tests"""
+-        app.testing = True
+-        cls.client = app.test_client()
+-
+-    def test_create_state_missing_name(self):
+-        """Test POST /api/v1/states with missing 'name' field in JSON"""
+-        headers = {"Content-Type": "application/json"}
+-        response = self.client.post('/api/v1/states', json={}, headers=headers)
+-        self.assertEqual(response.status_code, 400)
+-        error_message = response.get_json(silent=True) or {}
+-        self.assertIn("Missing name", error_message.get("description", ""))
+-
+-    def test_create_state_invalid_json(self):
+-        """Test POST /api/v1/states with invalid JSON"""
+-        headers = {"Content-Type": "application/json"}
+-        response = self.client.post(
+-            '/api/v1/states', data="invalid_json", headers=headers)
+-        self.assertEqual(response.status_code, 400)
+-        error_message = response.get_json(silent=True) or {}
+-        self.assertIn("Not a JSON", error_message.get("description", ""))
+-
+-    def test_update_state_invalid_json(self):
+-        """Test PUT /api/v1/states/<state_id> with invalid JSON"""
+-        state = State(name="Initial State")
+-        storage.new(state)
+-        storage.save()
+-
+-        headers = {"Content-Type": "application/json"}
+-        response = self.client.put(
+-            f'/api/v1/states/{state.id}', data="invalid_json", headers=headers)
+-        self.assertEqual(response.status_code, 400)
+-        error_message = response.get_json(silent=True) or {}
+-        self.assertIn("Not a JSON", error_message.get("description", ""))
+-
+-        # Clean up
+-        storage.delete(state)
+-        storage.save()
+-
+-    def test_update_state_missing_name(self):
+-        """Test PUT /api/v1/states/<state_id> without name in JSON"""
+-        state = State(name="Initial State")
+-        storage.new(state)
+-        storage.save()
+-
+-        headers = {"Content-Type": "application/json"}
+-        response = self.client.put(
+-            f'/api/v1/states/{state.id}', json={}, headers=headers)
+-        self.assertEqual(response.status_code, 400)
+-        error_message = response.get_json(silent=True) or {}
+-        self.assertIn("Missing name", error_message.get("description", ""))
+-
+-        # Clean up
+-        storage.delete(state)
+-        storage.save()
+-
+-
+-if __name__ == '__main__':
+-    unittest.main()
++class TestState(unittest.TestCase):
++    """Test the State class"""
++    def test_is_subclass(self):
++        """Test that State is a subclass of BaseModel"""
++        state = State()
++        self.assertIsInstance(state, BaseModel)
++        self.assertTrue(hasattr(state, "id"))
++        self.assertTrue(hasattr(state, "created_at"))
++        self.assertTrue(hasattr(state, "updated_at"))
++
++    def test_name_attr(self):
++        """Test that State has attribute name, and it's as an empty string"""
++        state = State()
++        self.assertTrue(hasattr(state, "name"))
++        if models.storage_t == 'db':
++            self.assertEqual(state.name, None)
++        else:
++            self.assertEqual(state.name, "")
++
++    def test_to_dict_creates_dict(self):
++        """test to_dict method creates a dictionary with proper attrs"""
++        s = State()
++        new_d = s.to_dict()
++        self.assertEqual(type(new_d), dict)
++        self.assertFalse("_sa_instance_state" in new_d)
++        for attr in s.__dict__:
++            if attr is not "_sa_instance_state":
++                self.assertTrue(attr in new_d)
++        self.assertTrue("__class__" in new_d)
++
++    def test_to_dict_values(self):
++        """test that values in dict returned from to_dict are correct"""
++        t_format = "%Y-%m-%dT%H:%M:%S.%f"
++        s = State()
++        new_d = s.to_dict()
++        self.assertEqual(new_d["__class__"], "State")
++        self.assertEqual(type(new_d["created_at"]), str)
++        self.assertEqual(type(new_d["updated_at"]), str)
++        self.assertEqual(new_d["created_at"], s.created_at.strftime(t_format))
++        self.assertEqual(new_d["updated_at"], s.updated_at.strftime(t_format))
++
++    def test_str(self):
++        """test that the str method has the correct output"""
++        state = State()
++        string = "[State] ({}) {}".format(state.id, state.__dict__)
++        self.assertEqual(string, str(state))
+diff --git a/tests/test_models/test_user.py b/tests/test_models/test_user.py
+index 09527c7..f2ed662 100755
+--- a/tests/test_models/test_user.py
++++ b/tests/test_models/test_user.py
+@@ -8,7 +8,7 @@ import inspect
+ import models
+ from models import user
+ from models.base_model import BaseModel
+-import pycodestyle as pep8
++import pep8
+ import unittest
+ User = user.User
+ 
+diff --git a/web_flask/__pycache__/__init__.cpython-310.pyc b/web_flask/__pycache__/__init__.cpython-310.pyc
+deleted file mode 100644
+index 114b816..0000000
+Binary files a/web_flask/__pycache__/__init__.cpython-310.pyc and /dev/null differ
