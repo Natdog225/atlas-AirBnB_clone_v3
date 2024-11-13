@@ -6,8 +6,8 @@ updating, and deleting State objects.
 """
 
 from flask import jsonify, request, abort
-from zbackburnermodels import storage
-from zbackburnermodels.state import State
+from models import storage
+from models.state import State
 from api.v1.views import app_views
 
 

@@ -4,8 +4,8 @@ starts a Flask web application
 """
 
 from flask import Flask, render_template
-from zbackburnermodels import *
-from zbackburnermodels import storage
+from models import *
+from models import storage
 app = Flask(__name__)
 
 

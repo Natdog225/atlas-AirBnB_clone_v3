@@ -8,7 +8,7 @@ Main app module to start Flask for the API
 from flask import Flask, jsonify
 from flask_cors import CORS
 from api.v1.views.index import app_views
-from zbackburnermodels import storage
+from models import storage
 
 # Initialize Flask
 app = Flask(__name__)

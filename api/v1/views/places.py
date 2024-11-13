@@ -6,10 +6,10 @@ It includes routes to retrieve, create, delete, and update places.
 
 from flask import jsonify, abort, request
 from api.v1.views import app_views
-from zbackburnermodels import storage
-from zbackburnermodels.city import City
-from zbackburnermodels.place import Place
-from zbackburnermodels.user import User
+from models import storage
+from models.city import City
+from models.place import Place
+from models.user import User
 
 
 @app_views.route('/cities/<city_id>/places', methods=['GET'])

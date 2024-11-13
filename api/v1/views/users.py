@@ -6,8 +6,8 @@ It includes routes to retrieve, create, delete, and update users.
 
 from flask import jsonify, abort, request
 from api.v1.views import app_views
-from zbackburnermodels import storage
-from zbackburnermodels.user import User
+from models import storage
+from models.user import User
 
 
 @app_views.route('/users', methods=['GET'])
