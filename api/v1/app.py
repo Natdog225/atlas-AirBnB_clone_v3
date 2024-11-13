@@ -13,9 +13,17 @@ from models import storage
 # Initialize Flask
 app = Flask(__name__)
 app.url_map.strict_slashes = False
-app.register_blueprint(app_views)
+app.register_blueprint(app_views, url_prefix='/api/v1')
+
 
 CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
+
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    response.headers['Content-Type'] = 'application/json'
+    return response
 
 
 @app.teardown_appcontext
