@@ -1,31 +1,36 @@
 #!/usr/bin/python3
-"""Index file for reasons"""
+
+"""
+Defines routes for index
+"""
+
+
 from flask import jsonify
 from api.v1.views import app_views
-from models.user import User
-from models.state import State
-from models.city import City
+from models import storage
 from models.amenity import Amenity
+from models.city import City
 from models.place import Place
 from models.review import Review
-from models import storage
+from models.state import State
+from models.user import User
 
 
-@app_views.route('/status', methods=['GET'], strict_slashes=False)
+@app_views.route('/status', methods=['GET'])
 def status():
-    """I know it seems crazy, but this defines the status of API"""
+    """checks the api status"""
     return jsonify({"status": "OK"})
 
 
-@app_views.route('/stats', methods=['GET'], strict_slashes=False)
-def some_stats():
-    """ number of each object """
-    stats = {
-        "amenities": storage.count("Amenity"),
-        "cities": storage.count("City"),
-        "places": storage.count("Place"),
-        "reviews": storage.count("Review"),
-        "states": storage.count("State"),
-        "users": storage.count("User")
+@app_views.route('/stats', methods=['GET'])
+def stats():
+    """Returns the counts of each object by type."""
+    stats_data = {
+        "amenities": storage.count(Amenity),
+        "cities": storage.count(City),
+        "places": storage.count(Place),
+        "reviews": storage.count(Review),
+        "states": storage.count(State),
+        "users": storage.count(User)
     }
-    return jsonify(stats)
+    return jsonify(stats_data)

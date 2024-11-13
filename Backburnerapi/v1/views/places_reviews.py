@@ -1,20 +1,16 @@
 #!/usr/bin/python3
-
-"""
-This module provides RESTful API actions for Review objects.
-It includes routes to retrieve, create, delete, and update reviews for places.
-"""
-
-from flask import jsonify, abort, request
-from api.v1.views import app_views
+""" Places view """
+from flask import jsonify, abort, request, make_response
+from Backburnerapi.v1.views import app_views
 from models import storage
 from models.place import Place
 from models.review import Review
 from models.user import User
 
 
-@app_views.route('/places/<place_id>/reviews', methods=['GET'])
-def get_reviews_by_place(place_id):
+@app_views.route('/places/<place_id>/reviews',
+                 methods=['GET'], strict_slashes=False)
+def get_all_reviews(place_id):
     """Retrieves the list of all Review objects of a Place."""
     place = storage.get(Place, place_id)
     if not place:
@@ -53,7 +49,7 @@ def create_review(place_id):
     if not request.is_json:
         abort(400, description="Not a JSON")
 
-    data = request.get_json(silent=True)
+    data = request.get_json(silent=True)()
     if 'user_id' not in data:
         abort(400, description="Missing user_id")
     if 'text' not in data:
@@ -63,13 +59,11 @@ def create_review(place_id):
     if not user:
         abort(404)
 
-    new_review = Review(
-        text=data['text'], place_id=place_id, user_id=data['user_id']
-    )
+    new_review = Review(text=data['text'], place_id=place_id,
+                        user_id=data['user_id'])
     for key, value in data.items():
-        if key not in [
-            'id', 'user_id', 'place_id', 'created_at', 'updated_at'
-        ]:
+        if key not in ['id', 'user_id', 'place_id',
+                       'created_at', 'updated_at']:
             setattr(new_review, key, value)
 
     storage.new(new_review)
@@ -87,11 +81,10 @@ def update_review(review_id):
     if not request.is_json:
         abort(400, description="Not a JSON")
 
-    data = request.get_json(silent=True)
+    data = request.get_json(silent=True)()
     for key, value in data.items():
-        if key not in [
-            'id', 'user_id', 'place_id', 'created_at', 'updated_at'
-        ]:
+        if key not in ['id', 'user_id', 'place_id',
+                       'created_at', 'updated_at']:
             setattr(review, key, value)
 
     storage.save()
