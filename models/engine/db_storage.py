@@ -55,11 +55,24 @@ class DBStorage:
     def verify_tables_existence(self):
         """Check if tables exist and create them if they don't"""
         inspector = sqlalchemy.inspect(self.__engine)
+        
+        # Get all defined tables from Base.metadata
+        defined_tables = {table.name.lower(): table for table in Base.metadata.sorted_tables}
+        
         for table_name in classes.keys():
-            if not inspector.has_table(table_name.lower()):
-                logger.warning(f"Table {table_name} doesn't exist. Creating...")
-                Base.metadata.tables[table_name.lower()].create(self.__engine)
-                logger.info(f"Table {table_name} created.")
+            table_name_lower = table_name.lower()
+            
+            if table_name_lower not in defined_tables:
+                logger.warning(f"Table {table_name} is not defined in Base.metadata")
+                continue
+            
+            if not inspector.has_table(table_name_lower):
+                logger.info(f"Creating table {table_name}")
+                try:
+                    defined_tables[table_name_lower].create(self.__engine)
+                    logger.info(f"Table {table_name} created successfully")
+                except Exception as e:
+                    logger.error(f"Failed to create table {table_name}: {str(e)}")
 
     def get(self, cls, id):
         """Retrieves an object based on the class name and its ID."""
