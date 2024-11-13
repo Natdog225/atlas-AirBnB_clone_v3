@@ -41,7 +41,7 @@ class DBStorage:
                                                 HBNB_MYSQL_HOST,
                                                 HBNB_MYSQL_DB))
         if HBNB_ENV == "test":
-            Base.metadata.drop_all(self.__engine)
+            Base.metadata.drop_all(bind=self.__engine)  # Added bind=
         Base.metadata.create_all(self.__engine)
 
         sess_factory = sessionmaker(bind=self.__engine,
