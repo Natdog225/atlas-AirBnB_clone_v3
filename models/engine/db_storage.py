@@ -14,7 +14,7 @@ from models.place import Place
 from models.review import Review
 from os import getenv
 import sqlalchemy
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 Base = declarative_base()
@@ -100,3 +100,8 @@ class DBStorage:
             return len(self.__session.query(cls).all())
         else:
             return 0
+    
+    def check_tables(self):
+        inspector = inspect(self.__engine)
+        for table_name in inspector.get_table_names():
+            print(f"Table exists: {table_name}")
