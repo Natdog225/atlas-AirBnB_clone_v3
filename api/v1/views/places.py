@@ -51,7 +51,7 @@ def create_place(city_id):
     if not request.get_json():
         abort(make_response(jsonify({"error": "Not a JSON"}), 400))
 
-    data = request.get_json()
+    data = request.get_json(silent=True)()
     if 'user_id' not in data:
         abort(make_response(jsonify({"error": "Missing user_id"}), 400))
     if 'name' not in data:
@@ -77,7 +77,7 @@ def update_place(place_id):
     if not request.get_json():
         abort(make_response(jsonify({"error": "Not a JSON"}), 400))
 
-    data = request.get_json()
+    data = request.get_json(silent=True)()
     for key, value in data.items():
         if key not in ['id', 'user_id', 'city_id', 'created_at',
                        'updated_at']:

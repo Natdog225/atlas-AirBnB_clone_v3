@@ -45,7 +45,7 @@ def create_amenity():
         abort(make_response(jsonify({"error": "Not a JSON"}), 400))
     if 'name' not in request.get_json():
         abort(make_response(jsonify({"error": "Missing name"}), 400))
-    data = request.get_json()
+    data = request.get_json(silent=True)()
     instance = Amenity(**data)
     instance.save()
     return make_response(jsonify(instance.to_dict()), 201)
@@ -63,7 +63,7 @@ def update_amenity(amenity_id):
         abort(make_response(jsonify({"error": "Not a JSON"}), 400))
 
     ignore = ['id', 'created_at', 'updated_at']
-    data = request.get_json()
+    data = request.get_json(silent=True)()
     for key, value in data.items():
         if key not in ignore:
             setattr(amenity, key, value)

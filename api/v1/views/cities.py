@@ -62,7 +62,7 @@ def post_city(state_id):
     if 'name' not in request.get_json():
         abort(400, description="Missing name")
 
-    data = request.get_json()
+    data = request.get_json(silent=True)(silent=True)
     data['state_id'] = state_id
     instance = City(**data)
     instance.save()
@@ -82,7 +82,7 @@ def put_city(city_id):
 
     ignore = ['id', 'state_id', 'created_at', 'updated_at']
 
-    data = request.get_json()
+    data = request.get_json(silent=True)(silent=True)
     for key, value in data.items():
         if key not in ignore:
             setattr(city, key, value)

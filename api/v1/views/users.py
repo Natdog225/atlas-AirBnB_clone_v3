@@ -53,7 +53,7 @@ def post_user():
     if 'password' not in request.get_json():
         abort(make_response(jsonify({"error": "Missing password"}), 400))
 
-    data = request.get_json()
+    data = request.get_json(silent=True)()
     instance = User(**data)
     instance.save()
 
@@ -72,7 +72,7 @@ def put_user(user_id):
 
     ignore = ['id', 'email', 'created_at', 'updated_at']
 
-    data = request.get_json()
+    data = request.get_json(silent=True)()
     for key, value in data.items():
         if key not in ignore:
             setattr(user, key, value)
