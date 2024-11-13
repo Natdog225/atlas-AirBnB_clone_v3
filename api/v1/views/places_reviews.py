@@ -7,10 +7,10 @@ It includes routes to retrieve, create, delete, and update reviews for places.
 
 from flask import jsonify, abort, request
 from api.v1.views import app_views
-from models import storage
-from models.place import Place
-from models.review import Review
-from models.user import User
+from zbackburnermodels import storage
+from zbackburnermodels.place import Place
+from zbackburnermodels.review import Review
+from zbackburnermodels.user import User
 
 
 @app_views.route('/places/<place_id>/reviews', methods=['GET'])

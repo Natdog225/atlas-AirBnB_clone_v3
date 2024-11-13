@@ -5,15 +5,15 @@ Contains the TestFileStorageDocs classes
 
 from datetime import datetime
 import inspect
-import models
-from models.engine import file_storage
-from models.amenity import Amenity
-from models.base_model import BaseModel
-from models.city import City
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.user import User
+import zbackburnermodels
+from zbackburnermodels.engine import file_storage
+from zbackburnermodels.amenity import Amenity
+from zbackburnermodels.base_model import BaseModel
+from zbackburnermodels.city import City
+from zbackburnermodels.place import Place
+from zbackburnermodels.review import Review
+from zbackburnermodels.state import State
+from zbackburnermodels.user import User
 import json
 import os
 import pep8
@@ -70,7 +70,7 @@ test_file_storage.py'])
 
 class TestFileStorage(unittest.TestCase):
     """Test the FileStorage class"""
-    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    @unittest.skipIf(zbackburnermodels.storage_t == 'db', "not testing file storage")
     def test_all_returns_dict(self):
         """Test that all returns the FileStorage.__objects attr"""
         storage = FileStorage()
@@ -78,7 +78,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(type(new_dict), dict)
         self.assertIs(new_dict, storage._FileStorage__objects)
 
-    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    @unittest.skipIf(zbackburnermodels.storage_t == 'db', "not testing file storage")
     def test_new(self):
         """test that new adds an object to the FileStorage.__objects attr"""
         storage = FileStorage()
@@ -94,7 +94,7 @@ class TestFileStorage(unittest.TestCase):
                 self.assertEqual(test_dict, storage._FileStorage__objects)
         FileStorage._FileStorage__objects = save
 
-    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    @unittest.skipIf(zbackburnermodels.storage_t == 'db', "not testing file storage")
     def test_save(self):
         """Test that save properly saves objects to file.json"""
         storage = FileStorage()
@@ -114,7 +114,7 @@ class TestFileStorage(unittest.TestCase):
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
 
-    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    @unittest.skipIf(zbackburnermodels.storage_t == 'db', "not testing file storage")
     def test_get(self):
         """Test that get properly retrieves one object,based on class and ID"""
         storage = FileStorage()
@@ -129,7 +129,7 @@ class TestFileStorage(unittest.TestCase):
             self.assertEqual(instance.__class__, test_obj.__class__)
             self.assertEqual(instance.to_dict(), test_obj.to_dict())
 
-    @unittest.skipIf(models.storage_t == 'db', "not testing file storage")
+    @unittest.skipIf(zbackburnermodels.storage_t == 'db', "not testing file storage")
     def test_count(self):
         """Test that count properly counts the number of objects in storage"""
         storage = FileStorage()

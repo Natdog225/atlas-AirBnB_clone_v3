@@ -6,8 +6,8 @@ Main app module to start Flask for the API
 
 # No need to import HTTPException here
 from flask import Flask, jsonify
-from Backburnerapi.v1.views import app_views
-from models import storage
+from zackburnerapi.v1.views import app_views
+from zbackburnermodels import storage
 
 # Initialize Flask
 app = Flask(__name__)

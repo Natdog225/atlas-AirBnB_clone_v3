@@ -5,9 +5,9 @@ Contains the TestAmenityDocs classes
 
 from datetime import datetime
 import inspect
-import models
-from models import amenity
-from models.base_model import BaseModel
+import zbackburnermodels
+from zbackburnermodels import amenity
+from zbackburnermodels.base_model import BaseModel
 import pep8
 import unittest
 Amenity = amenity.Amenity
@@ -71,7 +71,7 @@ class TestAmenity(unittest.TestCase):
         """Test that Amenity has attribute name, and it's as an empty string"""
         amenity = Amenity()
         self.assertTrue(hasattr(amenity, "name"))
-        if models.storage_t == 'db':
+        if zbackburnermodels.storage_t == 'db':
             self.assertEqual(amenity.name, None)
         else:
             self.assertEqual(amenity.name, "")

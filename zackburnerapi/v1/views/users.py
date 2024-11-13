@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """ User view """
 from flask import jsonify, abort, request, make_response
-from Backburnerapi.v1.views import app_views
-from models import storage
-from models.user import User
+from zackburnerapi.v1.views import app_views
+from zbackburnermodels import storage
+from zbackburnermodels.user import User
 
 
 @app_views.route('/users', methods=['GET'], strict_slashes=False)

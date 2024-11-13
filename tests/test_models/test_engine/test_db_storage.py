@@ -5,15 +5,15 @@ Contains the TestDBStorageDocs and TestDBStorage classes
 from datetime import datetime
 import inspect
 from unittest.mock import Base
-import models
-from models.engine import db_storage
-from models.amenity import Amenity
-from models.base_model import BaseModel
-from models.city import City
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.user import User
+import zbackburnermodels
+from zbackburnermodels.engine import db_storage
+from zbackburnermodels.amenity import Amenity
+from zbackburnermodels.base_model import BaseModel
+from zbackburnermodels.city import City
+from zbackburnermodels.place import Place
+from zbackburnermodels.review import Review
+from zbackburnermodels.state import State
+from zbackburnermodels.user import User
 import json
 import os
 import pep8
@@ -78,44 +78,44 @@ test_db_storage.py'])
 
 class TestFileStorage(unittest.TestCase):
     """Test the FileStorage class"""
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    @unittest.skipIf(zbackburnermodels.storage_t != 'db', "not testing db storage")
     def test_all_returns_dict(self):
         """Test that all returns a dictionaty"""
-        self.assertIs(type(models.storage.all()), dict)
+        self.assertIs(type(zbackburnermodels.storage.all()), dict)
 
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    @unittest.skipIf(zbackburnermodels.storage_t != 'db', "not testing db storage")
     def test_returns_obj(self):
         """Test that get returns an existing object """
         state = State(name="California")
         state.save()
-        first_state_obj = list(models.storage.all("State").values())[0]
-        state_obj = models.storage.get("State", first_state_obj.id)
+        first_state_obj = list(zbackburnermodels.storage.all("State").values())[0]
+        state_obj = zbackburnermodels.storage.get("State", first_state_obj.id)
         self.assertIs(first_state_obj, state_obj)
 
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    @unittest.skipIf(zbackburnermodels.storage_t != 'db', "not testing db storage")
     def test_returns_none(self):
         """Test that get returns None for nonexisting object """
-        state_obj = models.storage.get("State", "IDONTEXIST")
+        state_obj = zbackburnermodels.storage.get("State", "IDONTEXIST")
         self.assertIsNone(state_obj)
 
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    @unittest.skipIf(zbackburnermodels.storage_t != 'db', "not testing db storage")
     def test_all_no_class(self):
         """Test that all returns all rows when no class is passed"""
 
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    @unittest.skipIf(zbackburnermodels.storage_t != 'db', "not testing db storage")
     def test_new(self):
         """test that new adds an object to the database"""
 
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    @unittest.skipIf(zbackburnermodels.storage_t != 'db', "not testing db storage")
     def test_save(self):
         """Test that save properly saves objects to file.json"""
 
-    @unittest.skipIf(models.storage_t != 'db', "not testing db storage")
+    @unittest.skipIf(zbackburnermodels.storage_t != 'db', "not testing db storage")
     def test_count(self):
         """Test that count is properly return """
-        objs = models.storage.all()
-        self.assertEqual(len(objs), models.storage.count())
-        state_objs = models.storage.all("State")
-        self.assertEqual(len(state_objs), models.storage.count("State"))
-        no_objs = models.storage.all("Any")
-        self.assertEqual(len(no_objs), models.storage.count("Any"))
+        objs = zbackburnermodels.storage.all()
+        self.assertEqual(len(objs), zbackburnermodels.storage.count())
+        state_objs = zbackburnermodels.storage.all("State")
+        self.assertEqual(len(state_objs), zbackburnermodels.storage.count("State"))
+        no_objs = zbackburnermodels.storage.all("Any")
+        self.assertEqual(len(no_objs), zbackburnermodels.storage.count("Any"))

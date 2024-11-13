@@ -7,13 +7,13 @@ Defines routes for index
 
 from flask import jsonify
 from api.v1.views import app_views
-from models import storage
-from models.amenity import Amenity
-from models.city import City
-from models.place import Place
-from models.review import Review
-from models.state import State
-from models.user import User
+from zbackburnermodels import storage
+from zbackburnermodels.amenity import Amenity
+from zbackburnermodels.city import City
+from zbackburnermodels.place import Place
+from zbackburnermodels.review import Review
+from zbackburnermodels.state import State
+from zbackburnermodels.user import User
 
 
 @app_views.route('/status', methods=['GET'])

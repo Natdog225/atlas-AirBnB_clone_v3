@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 """ Amenity view """
 from flask import jsonify, abort, request, make_response
-from Backburnerapi.v1.views import app_views
-from models import storage
-from models.amenity import Amenity
+from zackburnerapi.v1.views import app_views
+from zbackburnermodels import storage
+from zbackburnermodels.amenity import Amenity
 
 
 @app_views.route('/amenities', methods=['GET'], strict_slashes=False)

@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """ Place view """
 from flask import jsonify, abort, request, make_response
-from Backburnerapi.v1.views import app_views
-from models import storage
-from models.city import City
-from models.place import Place
-from models.user import User
+from zackburnerapi.v1.views import app_views
+from zbackburnermodels import storage
+from zbackburnermodels.city import City
+from zbackburnermodels.place import Place
+from zbackburnermodels.user import User
 
 
 @app_views.route('/cities/<city_id>/places', methods=['GET'],

@@ -5,9 +5,9 @@ Contains the TestStateDocs classes
 
 from datetime import datetime
 import inspect
-import models
-from models import state
-from models.base_model import BaseModel
+import zbackburnermodels
+from zbackburnermodels import state
+from zbackburnermodels.base_model import BaseModel
 import pep8
 import unittest
 State = state.State
@@ -71,7 +71,7 @@ class TestState(unittest.TestCase):
         """Test that State has attribute name, and it's as an empty string"""
         state = State()
         self.assertTrue(hasattr(state, "name"))
-        if models.storage_t == 'db':
+        if zbackburnermodels.storage_t == 'db':
             self.assertEqual(state.name, None)
         else:
             self.assertEqual(state.name, "")
