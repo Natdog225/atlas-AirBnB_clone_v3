@@ -25,8 +25,12 @@ def teardown_db(exception=None):
 
 
 @app.errorhandler(404)
-def not_found(error=None):
+def not_found(error):
     return jsonify({"error": "Not found"}), 404
+
+@app_views.errorhandler(400)
+def bad_request(error):
+    return jsonify({"error": str(error)}), 400
 
 
 if __name__ == "__main__":
