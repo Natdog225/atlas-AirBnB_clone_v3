@@ -18,10 +18,13 @@ app.register_blueprint(app_views, url_prefix='/api/v1')
 
 CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 
+
 @app.after_request
 def after_request(response):
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    response.headers.add
+    ('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add
+    ('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
     response.headers['Content-Type'] = 'application/json'
     return response
 
@@ -35,6 +38,7 @@ def teardown_db(exception=None):
 @app.errorhandler(404)
 def not_found(error):
     return jsonify({"error": "Not found"}), 404
+
 
 @app_views.errorhandler(400)
 def bad_request(error):
