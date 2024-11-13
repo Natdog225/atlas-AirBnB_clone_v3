@@ -198,7 +198,7 @@ class TestAmenityAPI(unittest.TestCase):
         )
         self.assertEqual(response.status_code, 400)
         error_message = response.get_json(silent=True) or {}
-        self.assertIn("Not a JSON", error_message.get("error", ""))
+        self.assertIn("Not a JSON", error_message.get("error"))
 
     def test_update_amenity(self):
         """Test PUT /api/v1/amenities/<amenity_id> to update an amenity."""
