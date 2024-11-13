@@ -41,6 +41,7 @@ class DBStorage:
                                              HBNB_MYSQL_DB))
         if HBNB_ENV == "test":
             Base.metadata.drop_all(self.__engine)
+        Base.metadata.create_all(self.__engine)
 
     def get(self, cls, id):
         """Retrieves an object based on the class name and its ID.
